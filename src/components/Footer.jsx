@@ -71,10 +71,7 @@ export default function Footer() {
       </div>
       <div style={{ display: "flex", gap: narrow ? 16 : 24, flexWrap: "wrap", paddingTop: 28, borderTop: `1px solid #2c2620`, marginBottom: 24 }}>
         <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
-          ↓ PILOT iOS APP
-        </a>
-        <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
-          ↓ CUSTOMER iOS APP
+          ↓ AVAIRY iOS APP
         </a>
         <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
           → AVAIRY ACADEMY

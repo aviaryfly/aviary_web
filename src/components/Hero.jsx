@@ -88,11 +88,13 @@ export default function Hero({ layout = "split" }) {
       <div style={{ position: "relative", background: A.bg2, minHeight: narrow ? 320 : 0 }}>
         <AirspaceMap />
         <div className="mono" style={{ position: "absolute", top: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
-          ✱ LIVE · KJFK MODE C VEIL · 5 JOBS WITHIN 30 NM
+          ✱ LIVE · NYC METRO · 412 PILOTS ONLINE · 47 OPEN JOBS
         </div>
-        <div className="mono" style={{ position: "absolute", bottom: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
-          1:250,000 · VFR
-        </div>
+        {!narrow && (
+          <div className="mono" style={{ position: "absolute", top: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
+            DISPATCH GRID · v0.9
+          </div>
+        )}
       </div>
     </section>
   );
