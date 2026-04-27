@@ -16,7 +16,7 @@ export default function Founders() {
         </div>
         <div>
           <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 20px", maxWidth: 620 }}>
-            Cornell PhD in flight control for unmanned aircraft. Authored Avairy's Part 107 Auto-Approval technical report and filed formal comments on the FAA's Part 108 BVLOS rule. Built the LAANC USS infrastructure end-to-end: SWIM/SCDS NOTAM pipeline, airspace classification engine, and the iOS workforce app.
+            Cornell PhD in flight control for unmanned aircraft. Authored Aviary's Part 107 Auto-Approval technical report and filed formal comments on the FAA's Part 108 BVLOS rule. Built the LAANC USS infrastructure end-to-end: SWIM/SCDS NOTAM pipeline, airspace classification engine, and the iOS workforce app.
           </p>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {ratings.map((r) => (

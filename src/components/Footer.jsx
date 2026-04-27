@@ -9,9 +9,9 @@ export default function Footer() {
 
   const submit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Avairy waitlist (${role})`);
+    const subject = encodeURIComponent(`Aviary waitlist (${role})`);
     const body = encodeURIComponent(`Email: ${email}\nRole: ${role}`);
-    window.location.href = `mailto:hello@avairy.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@aviary.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -71,14 +71,14 @@ export default function Footer() {
       </div>
       <div style={{ display: "flex", gap: narrow ? 16 : 24, flexWrap: "wrap", paddingTop: 28, borderTop: `1px solid #2c2620`, marginBottom: 24 }}>
         <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
-          ↓ AVAIRY iOS APP
+          ↓ AVIARY iOS APP
         </a>
         <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
-          → AVAIRY ACADEMY
+          → AVIARY ACADEMY
         </a>
       </div>
       <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.16em", display: "flex", flexDirection: narrow ? "column" : "row", gap: narrow ? 8 : 0, justifyContent: "space-between", paddingTop: 16, borderTop: `1px solid #2c2620` }}>
-        <span>AVAIRY © 2026</span>
+        <span>AVIARY © 2026</span>
         <span>NEW YORK · N40°44.5′ W74°00.2′</span>
         <span>EARLY ACCESS · CLOSED BETA</span>
       </div>

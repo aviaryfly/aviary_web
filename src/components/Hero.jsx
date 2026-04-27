@@ -26,7 +26,7 @@ export default function Hero({ layout = "split" }) {
         </h1>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "end" }}>
           <p className="serif" style={{ fontSize: 22, lineHeight: 1.45, color: A.ink2, margin: 0, maxWidth: 620 }}>
-            400,000+ FAA-certified Part 107 pilots. Zero dominant platform. Avairy is the marketplace and operating system that connects them with the businesses that need drone work, backed by the only FAA-grade airspace infrastructure built into a workforce app.
+            400,000+ FAA-certified Part 107 pilots. Zero dominant platform. Aviary is the marketplace and operating system that connects them with the businesses that need drone work, backed by the only FAA-grade airspace infrastructure built into a workforce app.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
             <button className="sans" style={btnPrimary}>Post a job →</button>
@@ -41,7 +41,7 @@ export default function Hero({ layout = "split" }) {
     <section style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.25fr", borderBottom: `1px solid ${A.line}`, minHeight: narrow ? 0 : 620 }}>
       <div style={{ padding: narrow ? "48px 24px 40px" : "72px 48px 64px", borderRight: narrow ? "none" : `1px solid ${A.line}`, borderBottom: narrow ? `1px solid ${A.line}` : "none", position: "relative" }}>
         <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}>
-          ✱ AVAIRY / SHEET 01 / WORKFORCE FOR THE SKY
+          ✱ AVIARY / SHEET 01 / WORKFORCE FOR THE SKY
         </div>
         <h1
           className="serif"

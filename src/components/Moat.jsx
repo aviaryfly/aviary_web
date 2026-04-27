@@ -16,7 +16,7 @@ export default function Moat() {
         num="04"
         label="REGULATORY MOAT"
         title="The rails, not just the app."
-        subtitle="Every commercial drone flight needs FAA airspace authorization. Avairy is becoming a LAANC USS, so authorizations happen inside our platform. No other workforce app has even started building this."
+        subtitle="Every commercial drone flight needs FAA airspace authorization. Aviary is becoming a LAANC USS, so authorizations happen inside our platform. No other workforce app has even started building this."
       />
 
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.15fr 1fr", gap: narrow ? 48 : 80, marginTop: narrow ? 40 : 64 }}>
@@ -42,7 +42,7 @@ export default function Moat() {
             A marketplace today. <em style={{ color: A.mag, fontStyle: "italic" }}>Critical infrastructure</em> tomorrow.
           </h3>
           <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 24px", maxWidth: 480 }}>
-            When the FAA finalizes Part 108, beyond-visual-line-of-sight commercial flight opens up: drone delivery, autonomous inspection, at-scale operations. The workforce platform with the regulatory rails wins. Avairy has filed formal comments on the rule and is architecting for it.
+            When the FAA finalizes Part 108, beyond-visual-line-of-sight commercial flight opens up: drone delivery, autonomous inspection, at-scale operations. The workforce platform with the regulatory rails wins. Aviary has filed formal comments on the rule and is architecting for it.
           </p>
           <div className="mono" style={{ fontSize: 11, color: A.mag, letterSpacing: "0.14em", paddingTop: 16, borderTop: `1px solid ${A.line}` }}>
             ETA ~2027 · BVLOS · DELIVERY · AUTONOMOUS INSPECTION

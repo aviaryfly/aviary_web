@@ -9,7 +9,7 @@ import Faq from "./Faq.jsx";
 import Footer from "./Footer.jsx";
 import Reveal from "./Reveal.jsx";
 
-export default function DirectionA({ heroLayout = "split", name = "AVAIRY" }) {
+export default function DirectionA({ heroLayout = "split", name = "AVIARY" }) {
   return (
     <div style={{ background: A.bg, color: A.ink, minHeight: "100%", fontFamily: "Helvetica, Arial, sans-serif" }}>
       <Nav name={name} />

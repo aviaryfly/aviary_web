@@ -5,9 +5,9 @@ export function HowItWorks() {
   const narrow = useIsNarrow();
   const steps = [
     { n: "01", t: "Job is posted", d: "A dealership, GC, or insurance adjuster posts the shoot, inspection, or flyover. Coordinates, deliverables, deadline." },
-    { n: "02", t: "Pilot is matched", d: "Avairy matches the nearest qualified Part 107 pilot by LAANC authorization history, equipment, prior work, and real-time availability." },
+    { n: "02", t: "Pilot is matched", d: "Aviary matches the nearest qualified Part 107 pilot by LAANC authorization history, equipment, prior work, and real-time availability." },
     { n: "03", t: "Airspace cleared", d: "Our LAANC USS submits the authorization, parses NOTAMs, and confirms weather. Every flight is legal before wheels-up." },
-    { n: "04", t: "Flown and paid", d: "Pilot dispatches in-app via LiveKit. Footage uploads automatically. Pilot is paid the same day; Avairy takes 15%." },
+    { n: "04", t: "Flown and paid", d: "Pilot dispatches in-app via LiveKit. Footage uploads automatically. Pilot is paid the same day; Aviary takes 15%." },
   ];
   return (
     <section id="how" style={{ padding: narrow ? "72px 24px 64px" : "112px 48px 96px", borderBottom: `1px solid ${A.line}` }}>

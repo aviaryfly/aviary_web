@@ -8,9 +8,9 @@ export default function Faq() {
   const items = [
     ["Is this really a new market?", "Yes. 400,000+ FAA-certified Part 107 pilots in the U.S., a workforce larger than commercial airline pilots, and no dominant marketplace. Work today is fragmented across one-off contracts, local operators, and DIY job boards."],
     ["What's the moat?", "Becoming an FAA LAANC USS. Authorizations happen inside our platform, not a third party's. No other workforce app has built this."],
-    ["Who pays you?", "Customers in real estate, construction, infrastructure, agriculture, public safety, and insurance. Avairy takes 15% of every job."],
+    ["Who pays you?", "Customers in real estate, construction, infrastructure, agriculture, public safety, and insurance. Aviary takes 15% of every job."],
     ["What are the unit economics?", "1% of Part 107 pilots × 2 jobs/month × $600 × 15% take ≈ $8.6M ARR. 1% adoption is achievable in 24 months given there is no incumbent."],
-    ["What about Part 108?", "When BVLOS rules finalize, the workforce platform with the regulatory rails wins. Avairy has filed formal comments on the FAA's Part 108 rule and is architecting for it."],
+    ["What about Part 108?", "When BVLOS rules finalize, the workforce platform with the regulatory rails wins. Aviary has filed formal comments on the FAA's Part 108 rule and is architecting for it."],
   ];
   return (
     <section style={{ padding: narrow ? "64px 24px 72px" : "88px 48px 96px", borderBottom: `1px solid ${A.line}`, background: A.bg2 }}>

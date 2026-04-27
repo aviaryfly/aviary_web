@@ -1,6 +1,6 @@
-# Avairy Web
+# Aviary Web
 
-Marketing site for **Avairy** — the workforce platform for the 400,000+ FAA-certified Part 107 drone pilots in the U.S. Built with Vite + React, deployable on Vercel.
+Marketing site for **Aviary** — the workforce platform for the 400,000+ FAA-certified Part 107 drone pilots in the U.S. Built with Vite + React, deployable on Vercel.
 
 ## Local development
 

@@ -1,7 +1,7 @@
 import { A } from "./shared.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
-export default function Nav({ name = "AVAIRY" }) {
+export default function Nav({ name = "AVIARY" }) {
   const narrow = useIsNarrow();
   return (
     <header
