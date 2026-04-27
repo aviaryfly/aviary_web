@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { A } from "./shared.jsx";
+import { A, Logo } from "./shared.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 export default function Footer() {
@@ -77,8 +77,11 @@ export default function Footer() {
           → AVIARY ACADEMY
         </a>
       </div>
-      <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.16em", display: "flex", flexDirection: narrow ? "column" : "row", gap: narrow ? 8 : 0, justifyContent: "space-between", paddingTop: 16, borderTop: `1px solid #2c2620` }}>
-        <span>AVIARY © 2026</span>
+      <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.16em", display: "flex", flexDirection: narrow ? "column" : "row", gap: narrow ? 8 : 0, justifyContent: "space-between", paddingTop: 16, borderTop: `1px solid #2c2620`, alignItems: narrow ? "flex-start" : "center" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <Logo size={16} bg={A.ink} ink={A.bg} />
+          AVIARY © 2026
+        </span>
         <span>NEW YORK · N40°44.5′ W74°00.2′</span>
         <span>EARLY ACCESS · CLOSED BETA</span>
       </div>

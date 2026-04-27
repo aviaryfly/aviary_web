@@ -9,6 +9,25 @@ export const A = {
   mag: "#c8156c",
 };
 
+export function Logo({ size = 22, bg = A.bg, ink = A.ink, mag = A.mag, style }) {
+  const stroke = Math.max(2, (size / 64) * 3);
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" style={{ display: "block", ...style }} aria-hidden="true">
+      <rect width="64" height="64" fill={bg} />
+      <g fill="none" stroke={ink} strokeWidth={stroke} strokeLinecap="round">
+        <line x1="14" y1="14" x2="50" y2="50" />
+        <line x1="50" y1="14" x2="14" y2="50" />
+        <circle cx="14" cy="14" r="6" />
+        <circle cx="50" cy="14" r="6" />
+        <circle cx="14" cy="50" r="6" />
+        <circle cx="50" cy="50" r="6" />
+      </g>
+      <rect x="26" y="26" width="12" height="12" fill={bg} stroke={ink} strokeWidth={stroke} />
+      <circle cx="32" cy="32" r="3" fill={mag} />
+    </svg>
+  );
+}
+
 export const btnPrimary = {
   fontSize: 13,
   background: A.ink,
