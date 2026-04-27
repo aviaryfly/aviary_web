@@ -1,28 +1,30 @@
 import { useState } from "react";
 import { A } from "./shared.jsx";
+import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 export default function Footer() {
+  const narrow = useIsNarrow();
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("PILOT");
 
   const submit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Avairy waitlist — ${role}`);
+    const subject = encodeURIComponent(`Avairy waitlist (${role})`);
     const body = encodeURIComponent(`Email: ${email}\nRole: ${role}`);
     window.location.href = `mailto:hello@avairy.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <footer id="contact" style={{ background: A.ink, color: A.bg, padding: "80px 48px 32px" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 80, marginBottom: 80 }}>
+    <footer id="contact" style={{ background: A.ink, color: A.bg, padding: narrow ? "56px 24px 28px" : "80px 48px 32px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.4fr 1fr", gap: narrow ? 40 : 80, marginBottom: 56 }}>
         <div>
           <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.18em", marginBottom: 24 }}>
-            ✱ §08 — JOIN THE EARLIEST FLIGHT
+            ✱ §07 · JOIN THE EARLIEST FLIGHT
           </div>
-          <h2 className="serif" style={{ fontSize: 64, fontWeight: 500, lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0 }}>
+          <h2 className="serif" style={{ fontSize: narrow ? 44 : 64, fontWeight: 500, lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0 }}>
             Get a tail number.
           </h2>
-          <p className="serif" style={{ fontSize: 18, color: "#cdc3ad", margin: "20px 0 0", maxWidth: 480 }}>
+          <p className="serif" style={{ fontSize: narrow ? 16 : 18, color: "#cdc3ad", margin: "20px 0 0", maxWidth: 480 }}>
             We're onboarding a closed group of pilots and customers. Tell us who you are and we'll be in touch as access opens.
           </p>
         </div>
@@ -67,10 +69,21 @@ export default function Footer() {
           </div>
         </form>
       </div>
-      <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.16em", display: "flex", justifyContent: "space-between", paddingTop: 24, borderTop: `1px solid #2c2620` }}>
+      <div style={{ display: "flex", gap: narrow ? 16 : 24, flexWrap: "wrap", paddingTop: 28, borderTop: `1px solid #2c2620`, marginBottom: 24 }}>
+        <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
+          ↓ PILOT iOS APP
+        </a>
+        <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
+          ↓ CUSTOMER iOS APP
+        </a>
+        <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
+          → AVAIRY ACADEMY
+        </a>
+      </div>
+      <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.16em", display: "flex", flexDirection: narrow ? "column" : "row", gap: narrow ? 8 : 0, justifyContent: "space-between", paddingTop: 16, borderTop: `1px solid #2c2620` }}>
         <span>AVAIRY © 2026</span>
-        <span>NEW YORK, NY — N40°44.5′ W74°00.2′</span>
-        <span>BUILT FOR THE PART 108 FUTURE</span>
+        <span>NEW YORK · N40°44.5′ W74°00.2′</span>
+        <span>EARLY ACCESS · CLOSED BETA</span>
       </div>
     </footer>
   );

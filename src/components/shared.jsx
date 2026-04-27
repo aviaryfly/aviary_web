@@ -33,7 +33,7 @@ export function SectionHead({ num, label, title, subtitle }) {
   return (
     <div>
       <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 16 }}>
-        ✱ §{num} — {label}
+        ✱ §{num} · {label}
       </div>
       <h2
         className="serif"

@@ -1,12 +1,14 @@
 import { A, btnPrimary, btnGhost } from "./shared.jsx";
 import AirspaceMap from "./AirspaceMap.jsx";
+import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 export default function Hero({ layout = "split" }) {
+  const narrow = useIsNarrow();
   if (layout === "stacked") {
     return (
       <section style={{ padding: "80px 48px 60px", borderBottom: `1px solid ${A.line}` }}>
         <div className="mono" style={{ fontSize: 11, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}>
-          ✱ EST. 2026 — NEW YORK SECTIONAL — 56TH EDITION
+          ✱ EST. 2026 · NEW YORK SECTIONAL · 56TH EDITION
         </div>
         <h1
           className="serif"
@@ -24,7 +26,7 @@ export default function Hero({ layout = "split" }) {
         </h1>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "end" }}>
           <p className="serif" style={{ fontSize: 22, lineHeight: 1.45, color: A.ink2, margin: 0, maxWidth: 620 }}>
-            400,000+ FAA-certified Part 107 pilots. Zero dominant platform. Avairy is the marketplace and operating system that connects them with the businesses that need drone work — backed by the only FAA-grade airspace infrastructure built into a workforce app.
+            400,000+ FAA-certified Part 107 pilots. Zero dominant platform. Avairy is the marketplace and operating system that connects them with the businesses that need drone work, backed by the only FAA-grade airspace infrastructure built into a workforce app.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
             <button className="sans" style={btnPrimary}>Post a job →</button>
@@ -36,15 +38,15 @@ export default function Hero({ layout = "split" }) {
   }
 
   return (
-    <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${A.line}` }}>
-      <div style={{ padding: "72px 48px 64px", borderRight: `1px solid ${A.line}`, position: "relative" }}>
+    <section style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.25fr", borderBottom: `1px solid ${A.line}`, minHeight: narrow ? 0 : 620 }}>
+      <div style={{ padding: narrow ? "48px 24px 40px" : "72px 48px 64px", borderRight: narrow ? "none" : `1px solid ${A.line}`, borderBottom: narrow ? `1px solid ${A.line}` : "none", position: "relative" }}>
         <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}>
           ✱ AVAIRY / SHEET 01 / WORKFORCE FOR THE SKY
         </div>
         <h1
           className="serif"
           style={{
-            fontSize: 78,
+            fontSize: narrow ? 56 : 78,
             fontWeight: 500,
             lineHeight: 0.96,
             letterSpacing: "-0.02em",
@@ -54,44 +56,42 @@ export default function Hero({ layout = "split" }) {
         >
           Uber for the<br /><em style={{ color: A.mag, fontStyle: "italic" }}>sky</em>.
         </h1>
-        <p className="serif" style={{ fontSize: 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 36px", maxWidth: 480 }}>
-          The first marketplace for the 400,000+ FAA Part 107 pilots in the U.S. — built on the LAANC airspace authorization rails, so every flight is legal before it takes off.
+        <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 32px", maxWidth: 480 }}>
+          The marketplace for 400,000+ FAA Part 107 pilots, built on the LAANC airspace rails so every flight is legal before it takes off.
         </p>
-        <div style={{ display: "flex", gap: 10, marginBottom: 56, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
           <a href="#contact" className="sans" style={{ ...btnPrimary, display: "inline-block" }}>Post a job →</a>
           <a href="#contact" className="sans" style={{ ...btnGhost, display: "inline-block" }}>Join as a pilot</a>
-          <a href="#products" className="sans" style={{ ...btnGhost, display: "inline-block" }}>iOS app</a>
-          <a href="#products" className="sans" style={{ ...btnGhost, display: "inline-block" }}>Academy</a>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 0, borderTop: `1px solid ${A.line}` }}>
+        <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr 1fr", gap: 0, borderTop: `1px solid ${A.line}` }}>
           {[
             ["400,000+", "Part 107 pilots"],
-            ["60+", "Pilots already on platform"],
-            ["LAANC", "USS — pending"],
-            ["Hours", "not days"],
+            ["60+", "On the platform"],
+            ["LAANC USS", "Pending FAA designation"],
           ].map(([n, l], i, arr) => (
             <div
               key={i}
               style={{
-                padding: "20px 0",
-                borderRight: i < arr.length - 1 ? `1px solid ${A.line}` : "none",
-                paddingRight: i < arr.length - 1 ? 12 : 0,
-                paddingLeft: i > 0 ? 12 : 0,
+                padding: narrow ? "16px 0" : "20px 0",
+                borderRight: !narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
+                borderBottom: narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
+                paddingRight: !narrow && i < arr.length - 1 ? 16 : 0,
+                paddingLeft: !narrow && i > 0 ? 16 : 0,
               }}
             >
-              <div className="serif" style={{ fontSize: 28, color: A.ink, lineHeight: 1 }}>{n}</div>
+              <div className="serif" style={{ fontSize: narrow ? 26 : 30, color: A.ink, lineHeight: 1 }}>{n}</div>
               <div className="mono" style={{ fontSize: 9, color: A.ink3, letterSpacing: "0.14em", marginTop: 8, textTransform: "uppercase" }}>{l}</div>
             </div>
           ))}
         </div>
       </div>
-      <div style={{ position: "relative", background: A.bg2 }}>
+      <div style={{ position: "relative", background: A.bg2, minHeight: narrow ? 320 : 0 }}>
         <AirspaceMap />
         <div className="mono" style={{ position: "absolute", top: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
-          ✱ LIVE — KJFK MODE C VEIL — 5 JOBS WITHIN 30 NM
+          ✱ LIVE · KJFK MODE C VEIL · 5 JOBS WITHIN 30 NM
         </div>
         <div className="mono" style={{ position: "absolute", bottom: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
-          1:250,000 — VFR
+          1:250,000 · VFR
         </div>
       </div>
     </section>
