@@ -1,8 +1,15 @@
-import { A, Logo } from "./shared.jsx";
+import { A, Logo, Link } from "./shared.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 export default function Nav({ name = "AVIARY" }) {
   const narrow = useIsNarrow();
+  const links = [
+    ["How", "#how"],
+    ["Airspace", "#airspace"],
+    ["Founder", "#about"],
+    ["iOS", "/ios"],
+    ["Academy", "/academy"],
+  ];
   return (
     <header
       style={{
@@ -18,7 +25,7 @@ export default function Nav({ name = "AVIARY" }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <Logo size={22} />
           <span className="serif" style={{ fontSize: 20, fontWeight: 600, letterSpacing: "0.04em", color: A.ink }}>
             {name}
@@ -28,23 +35,17 @@ export default function Nav({ name = "AVIARY" }) {
               ✱ N40°44.5′ W74°00.2′
             </span>
           )}
-        </div>
+        </Link>
       </div>
       <nav style={{ display: "flex", alignItems: "center", gap: narrow ? 14 : 24 }}>
         {!narrow &&
-          [
-            ["How", "#how"],
-            ["Airspace", "#airspace"],
-            ["Founder", "#about"],
-            ["iOS", "#contact"],
-            ["Academy", "#contact"],
-          ].map(([l, href]) => (
-            <a key={l} href={href} className="sans" style={{ fontSize: 13, color: A.ink2, letterSpacing: "0.02em" }}>
+          links.map(([l, href]) => (
+            <Link key={l} href={href} className="sans" style={{ fontSize: 13, color: A.ink2, letterSpacing: "0.02em" }}>
               {l}
-            </a>
+            </Link>
           ))}
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           className="sans"
           style={{
             fontSize: 13,
@@ -52,12 +53,11 @@ export default function Nav({ name = "AVIARY" }) {
             color: A.bg,
             border: "none",
             padding: narrow ? "9px 14px" : "10px 18px",
-            borderRadius: 0,
             letterSpacing: "0.04em",
           }}
         >
           Post a job →
-        </a>
+        </Link>
       </nav>
     </header>
   );

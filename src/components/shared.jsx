@@ -9,6 +9,37 @@ export const A = {
   mag: "#c8156c",
 };
 
+export function navigate(path) {
+  if (typeof window === "undefined") return;
+  const cur = window.location.pathname + window.location.hash;
+  if (path.startsWith("#")) {
+    if (window.location.pathname !== "/") {
+      window.history.pushState({}, "", "/" + path);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    } else {
+      window.location.hash = path;
+    }
+    return;
+  }
+  if (path === cur) return;
+  window.history.pushState({}, "", path);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+}
+
+export function Link({ href, children, style, className, onClick }) {
+  const handle = (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+    e.preventDefault();
+    if (onClick) onClick(e);
+    navigate(href);
+  };
+  return (
+    <a href={href} onClick={handle} className={className} style={style}>
+      {children}
+    </a>
+  );
+}
+
 export function Logo({ size = 22, bg = A.bg, ink = A.ink, mag = A.mag, style }) {
   const stroke = Math.max(2, (size / 64) * 3);
   return (
