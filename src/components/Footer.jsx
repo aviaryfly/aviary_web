@@ -2,6 +2,8 @@ import { useState } from "react";
 import { A, Logo } from "./shared.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
+const CONTACT_EMAIL = "xinyu@aviaryfly.com";
+
 export default function Footer() {
   const narrow = useIsNarrow();
   const [email, setEmail] = useState("");
@@ -11,7 +13,7 @@ export default function Footer() {
     e.preventDefault();
     const subject = encodeURIComponent(`Aviary waitlist (${role})`);
     const body = encodeURIComponent(`Email: ${email}\nRole: ${role}`);
-    window.location.href = `mailto:hello@aviary.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -35,7 +37,7 @@ export default function Footer() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder={CONTACT_EMAIL}
               className="serif"
               style={{ flex: 1, background: "transparent", border: "none", color: A.bg, padding: "14px 0", fontSize: 18, outline: "none", fontStyle: "italic" }}
             />
