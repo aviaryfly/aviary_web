@@ -45,7 +45,7 @@ export default function Nav({ name = "AVIARY" }) {
             </Link>
           ))}
         <Link
-          href="/#contact"
+          href="/contact"
           className="sans"
           style={{
             fontSize: 13,
@@ -56,7 +56,7 @@ export default function Nav({ name = "AVIARY" }) {
             letterSpacing: "0.04em",
           }}
         >
-          Post a job →
+          Contact us →
         </Link>
       </nav>
     </header>
