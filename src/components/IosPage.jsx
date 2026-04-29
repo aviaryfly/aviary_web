@@ -49,7 +49,7 @@ export default function IosPage() {
               The <em style={{ color: A.mag, fontStyle: "italic" }}>pilot's</em><br />cockpit.
             </h1>
             <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 28px", maxWidth: 480 }}>
-              Built for the 400,000+ FAA Part 107 pilots in U.S. airspace, the app handles the work around each flight: nearby jobs, map-first details, accept flow, pre-flight checks, in-flight context, deliverables, and payout controls. The charter build is being tested while LAANC and payouts move into the native flow.
+              Built for the 492,000+ FAA remote pilots in U.S. airspace, the app handles the work around each flight: nearby jobs, map-first details, accept flow, pre-flight checks, in-flight context, deliverables, and payout controls. The charter build is being tested while LAANC and payouts move into the native flow.
             </p>
             <div style={{ display: "flex", gap: 10, marginBottom: 56, flexWrap: "wrap" }}>
               <Link href="/#contact" className="sans" style={{ fontSize: 13, background: A.ink, color: A.bg, padding: "12px 20px", letterSpacing: "0.04em", fontWeight: 500 }}>

@@ -22,7 +22,7 @@ export default function IosPreview() {
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.4fr", gap: narrow ? 32 : 56, alignItems: "start" }}>
         <div>
           <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 16 }}>
-            ✱ §04 · iOS BUILD · v0.6
+            ✱ §05 · iOS BUILD · v0.6
           </div>
           <h2
             className="serif"

@@ -13,7 +13,7 @@ export default function Moat() {
   return (
     <section id="airspace" style={{ padding: narrow ? "72px 24px 64px" : "120px 48px 104px", borderBottom: `1px solid ${A.line}`, background: A.bg2 }}>
       <SectionHead
-        num="05"
+        num="06"
         label="REGULATORY MOAT"
         title="The rails, not just the app."
         subtitle="Every commercial drone flight needs FAA airspace authorization. Aviary is becoming a LAANC USS, so authorizations happen inside our platform. No other workforce app has even started building this."

@@ -6,7 +6,7 @@ export default function Founders() {
   const ratings = ["PhD · Cornell", "Part 107", "PPL · in training", "FAA Part 108 commenter"];
   return (
     <section id="about" style={{ padding: narrow ? "56px 24px" : "80px 48px", borderBottom: `1px solid ${A.line}` }}>
-      <SectionHead num="06" label="FOUNDER" title="Built by the engineer flying the airspace they're regulating." />
+      <SectionHead num="07" label="FOUNDER" title="Built by the engineer flying the airspace they're regulating." />
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "240px 1fr", gap: narrow ? 24 : 56, marginTop: 48, maxWidth: 1000, alignItems: "start" }}>
         <div>
           <h3 className="serif" style={{ fontSize: 28, color: A.ink, fontWeight: 500, margin: "0 0 6px" }}>Xinyu Fang</h3>

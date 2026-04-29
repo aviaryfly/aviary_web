@@ -62,7 +62,7 @@ export default function Hero({ layout = "split" }) {
           The workforce<br />for the <em style={{ color: A.mag, fontStyle: "italic" }}>sky</em>.
         </h1>
         <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 32px", maxWidth: 480 }}>
-          A marketplace for 400,000+ FAA Part 107 pilots, with LAANC-aware dispatch built into the first job request.
+          A marketplace for 492,000+ FAA remote pilots, with LAANC-aware dispatch built into the first job request.
         </p>
         <div style={{ display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
           <a href="#contact" className="sans" style={{ ...btnPrimary, display: "inline-block" }}>Post a job →</a>
@@ -70,7 +70,7 @@ export default function Hero({ layout = "split" }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr 1fr", gap: 0, borderTop: `1px solid ${A.line}` }}>
           {[
-            ["400,000+", "Part 107 pilots, U.S."],
+            ["492,000+", "FAA remote pilots, U.S."],
             ["60 / 100", "Charter seats filled"],
             ["LAANC USS", "Pending FAA designation"],
           ].map(([n, l], i, arr) => (

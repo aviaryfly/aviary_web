@@ -37,11 +37,11 @@ export default function LiveFeed() {
     <section style={{ borderBottom: `1px solid ${A.line}`, background: A.bg2 }}>
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.4fr" }}>
         <div style={{ padding: narrow ? "56px 24px 40px" : "80px 48px", borderRight: narrow ? "none" : `1px solid ${A.line}`, borderBottom: narrow ? `1px solid ${A.line}` : "none" }}>
-          <SectionHead num="03" label="MARKETPLACE" title="A real-time market for sky-work."
+          <SectionHead num="04" label="MARKETPLACE" title="A real-time market for sky-work."
             subtitle="Jobs go from posted to flown in hours, not days. Pilots watch a live feed of qualified work in their airspace and accept with one tap." />
           <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
             <Stat n="60+" l="Pilots on platform" />
-            <Stat n="$8.6M" l="ARR at 1% adoption" />
+            <Stat n="$10.6M" l="ARR at 1% adoption" />
             <Stat n="15%" l="take rate" />
             <Stat n="2 jobs" l="avg / pilot / mo" />
           </div>

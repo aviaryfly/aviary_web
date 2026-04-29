@@ -1,6 +1,7 @@
 import { A } from "./shared.jsx";
 import Nav from "./Nav.jsx";
 import Hero from "./Hero.jsx";
+import MarketDemand from "./MarketDemand.jsx";
 import { HowItWorks } from "./HowItWorks.jsx";
 import LiveFeed from "./LiveFeed.jsx";
 import IosPreview from "./IosPreview.jsx";
@@ -15,13 +16,14 @@ export default function DirectionA({ heroLayout = "split", name = "AVIARY" }) {
     <div style={{ background: A.bg, color: A.ink, minHeight: "100%", fontFamily: "Helvetica, Arial, sans-serif" }}>
       <Nav name={name} />
       <Hero layout={heroLayout} />
+      <Reveal><MarketDemand /></Reveal>
       <Reveal><HowItWorks /></Reveal>
       <Reveal><LiveFeed /></Reveal>
       <Reveal><IosPreview /></Reveal>
       <Reveal><Moat /></Reveal>
       <Reveal><Founders /></Reveal>
       <Reveal><Faq /></Reveal>
-      <Reveal><Footer sectionNumber="08" /></Reveal>
+      <Reveal><Footer sectionNumber="09" /></Reveal>
     </div>
   );
 }
