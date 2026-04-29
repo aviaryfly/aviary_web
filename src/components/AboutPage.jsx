@@ -5,7 +5,7 @@ import Reveal, { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const FOUNDER_EMAIL = "xinyu@aviaryfly.com";
-const ratings = ["PhD · Cornell", "Part 107", "PPL · in training", "FAA Part 108 commenter"];
+const ratings = ["PhD · Cornell", "PPL · in training", "FAA regulations · safety"];
 
 function EnrouteChart() {
   const RWY_X = 210;
@@ -194,7 +194,7 @@ export default function AboutPage() {
               {/* TODO_FILL: rewrite this paragraph in your own voice (mirror of Founders.jsx).
                   Shape: domain origin → moment of insight → personal commitment. 4 sentences max. */}
               <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.6, margin: "0 0 24px", maxWidth: 620, fontStyle: "italic" }}>
-                I spent years at Cornell building autonomous flapping-wing aircraft. The deeper I went into autonomy, the clearer it became that the bottleneck for commercial drones isn't the aircraft — it's who is licensed to fly them, where, and under whose airspace authorization. I got my Part 107, started my PPL, and engaged with the FAA on Part 108 because I want to build the rails, not another camera-drone app. Aviary is the company I needed to exist when I started flying.
+                I spent years at Cornell building autonomous flapping-wing aircraft. The deeper I went into autonomy, the clearer it became that the bottleneck for commercial drones isn't the aircraft — it's who is licensed to fly them, where, and under whose airspace authorization. I know the FAA regulations and the aviation safety frame they enforce, and I started my PPL because I want to build the rails, not another camera-drone app. There's a clear gap in the market right now between the pilots ready to fly and the customers who need them — Aviary is the company that has to exist to fill it.
               </p>
 
               <Stagger step={70} threshold={0.3} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>

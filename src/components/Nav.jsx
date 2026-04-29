@@ -6,6 +6,7 @@ export default function Nav({ name = "AVIARY" }) {
   const links = [
     ["Home", "/"],
     ["iOS", "/ios"],
+    ["Android", "/android"],
     ["About", "/about"],
   ];
   return (

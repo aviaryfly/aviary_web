@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DirectionA from "./components/DirectionA.jsx";
 import IosPage from "./components/IosPage.jsx";
+import AndroidPage from "./components/AndroidPage.jsx";
 import AcademyPage from "./components/AcademyPage.jsx";
 import AboutPage from "./components/AboutPage.jsx";
 import ContactPage from "./components/ContactPage.jsx";
@@ -27,6 +28,7 @@ export default function App() {
   }, []);
 
   if (path === "/ios") return <IosPage />;
+  if (path === "/android") return <AndroidPage />;
   if (path === "/academy") return <AcademyPage />;
   if (path === "/about") return <AboutPage />;
   if (path === "/contact") return <ContactPage />;
