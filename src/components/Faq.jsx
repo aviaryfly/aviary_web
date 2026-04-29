@@ -14,7 +14,7 @@ export default function Faq() {
   ];
   return (
     <section style={{ padding: narrow ? "64px 24px 72px" : "88px 48px 96px", borderBottom: `1px solid ${A.line}`, background: A.bg2 }}>
-      <SectionHead num="06" label="FREQUENTLY ASKED" title="FAQ." />
+      <SectionHead num="07" label="FREQUENTLY ASKED" title="FAQ." />
       <div style={{ marginTop: 48, borderTop: `1px solid ${A.line}` }}>
         {items.map(([q, a], i) => (
           <div key={i} style={{ borderBottom: `1px solid ${A.line}` }}>

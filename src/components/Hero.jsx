@@ -1,9 +1,14 @@
 import { A, btnPrimary, btnGhost } from "./shared.jsx";
 import AirspaceMap from "./AirspaceMap.jsx";
-import { useIsNarrow } from "../hooks/useMediaQuery.js";
+import PhoneFrame from "./PhoneFrame.jsx";
+import { useIsNarrow, useIsTablet } from "../hooks/useMediaQuery.js";
 
 export default function Hero({ layout = "split" }) {
   const narrow = useIsNarrow();
+  const compact = useIsTablet();
+  const phoneGap = narrow ? 8 : compact ? 12 : 24;
+  const mapPhoneWidth = narrow ? 150 : compact ? 160 : 220;
+  const detailPhoneWidth = narrow ? 178 : compact ? 195 : 260;
   if (layout === "stacked") {
     return (
       <section style={{ padding: "80px 48px 60px", borderBottom: `1px solid ${A.line}` }}>
@@ -26,7 +31,7 @@ export default function Hero({ layout = "split" }) {
         </h1>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "end" }}>
           <p className="serif" style={{ fontSize: 22, lineHeight: 1.45, color: A.ink2, margin: 0, maxWidth: 620 }}>
-            400,000+ FAA-certified Part 107 pilots. Zero dominant platform. Aviary is the marketplace and operating system that connects them with the businesses that need drone work, backed by the only FAA-grade airspace infrastructure built into a workforce app.
+            Aviary connects businesses with FAA-certified Part 107 pilots and gives each job a dispatch workflow that starts with airspace, equipment, availability, and delivery requirements.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
             <button className="sans" style={btnPrimary}>Post a job →</button>
@@ -54,10 +59,10 @@ export default function Hero({ layout = "split" }) {
             margin: "0 0 24px",
           }}
         >
-          Uber for the<br /><em style={{ color: A.mag, fontStyle: "italic" }}>sky</em>.
+          The workforce<br />for the <em style={{ color: A.mag, fontStyle: "italic" }}>sky</em>.
         </h1>
         <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 32px", maxWidth: 480 }}>
-          The marketplace for 400,000+ FAA Part 107 pilots, built on the LAANC airspace rails so every flight is legal before it takes off.
+          A marketplace for 400,000+ FAA Part 107 pilots, with LAANC-aware dispatch built into the first job request.
         </p>
         <div style={{ display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
           <a href="#contact" className="sans" style={{ ...btnPrimary, display: "inline-block" }}>Post a job →</a>
@@ -65,14 +70,15 @@ export default function Hero({ layout = "split" }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr 1fr", gap: 0, borderTop: `1px solid ${A.line}` }}>
           {[
-            ["400,000+", "Part 107 pilots"],
-            ["60+", "On the platform"],
+            ["400,000+", "Part 107 pilots, U.S."],
+            ["60 / 100", "Charter seats filled"],
             ["LAANC USS", "Pending FAA designation"],
           ].map(([n, l], i, arr) => (
             <div
               key={i}
               style={{
-                padding: narrow ? "16px 0" : "20px 0",
+                paddingTop: narrow ? 16 : 20,
+                paddingBottom: narrow ? 16 : 20,
                 borderRight: !narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
                 borderBottom: narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
                 paddingRight: !narrow && i < arr.length - 1 ? 16 : 0,
@@ -85,14 +91,72 @@ export default function Hero({ layout = "split" }) {
           ))}
         </div>
       </div>
-      <div style={{ position: "relative", background: A.bg2, minHeight: narrow ? 320 : 0 }}>
-        <AirspaceMap />
-        <div className="mono" style={{ position: "absolute", top: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
-          ✱ LIVE · NYC METRO · 412 PILOTS ONLINE · 47 OPEN JOBS
+      <div style={{ position: "relative", background: A.bg2, minHeight: narrow ? 420 : 0, overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
+          <AirspaceMap />
+        </div>
+        <div className="mono" style={{ position: "absolute", top: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}>
+          BERKELEY · 37.87°N 122.27°W · 8 OPEN / 10 NM
         </div>
         {!narrow && (
-          <div className="mono" style={{ position: "absolute", top: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em" }}>
-            DISPATCH GRID · v0.9
+          <div className="mono" style={{ position: "absolute", top: 16, right: 16, fontSize: 9, color: A.mag, letterSpacing: "0.14em", zIndex: 3 }}>
+            ● iOS v0.6 · SIMULATOR CAPTURE
+          </div>
+        )}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 2,
+            padding: narrow ? "48px 8px" : compact ? "48px 28px" : "48px",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              gap: phoneGap,
+              alignItems: "center",
+              transform: narrow ? "scale(0.9)" : "none",
+              transformOrigin: "center",
+            }}
+          >
+            <div
+              style={{
+                transform: narrow ? "translateY(14px) rotate(-2deg)" : "translateY(20px) rotate(-2.4deg)",
+                filter: "saturate(0.95)",
+              }}
+            >
+              <PhoneFrame
+                src="/screens/pilot-map.jpg"
+                alt="Aviary nearby gigs map"
+                width={mapPhoneWidth}
+              />
+            </div>
+            <div
+              style={{
+                transform: narrow ? "translateY(-12px) rotate(1.2deg)" : "translateY(-18px) rotate(1.8deg)",
+              }}
+            >
+              <PhoneFrame
+                src="/screens/pilot-gig-detail.jpg"
+                alt="Aviary gig detail, real MapKit"
+                width={detailPhoneWidth}
+              />
+            </div>
+          </div>
+        </div>
+        {!narrow && (
+          <div className="mono" style={{ position: "absolute", bottom: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}>
+            FIG. 01 · DISPATCH + GIG DETAIL
+          </div>
+        )}
+        {!narrow && (
+          <div className="mono" style={{ position: "absolute", bottom: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}>
+            ALT 0 AGL · CLASS G · UTC −08:00
           </div>
         )}
       </div>

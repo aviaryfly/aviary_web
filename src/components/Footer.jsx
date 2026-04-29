@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { A, Logo } from "./shared.jsx";
+import { A, Link, Logo } from "./shared.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const CONTACT_EMAIL = "xinyu@aviaryfly.com";
 
-export default function Footer() {
+export default function Footer({ sectionNumber = "07" }) {
   const narrow = useIsNarrow();
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("PILOT");
@@ -21,7 +21,7 @@ export default function Footer() {
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.4fr 1fr", gap: narrow ? 40 : 80, marginBottom: 56 }}>
         <div>
           <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.18em", marginBottom: 24 }}>
-            ✱ §07 · JOIN THE EARLIEST FLIGHT
+            ✱ §{sectionNumber} · JOIN THE EARLIEST FLIGHT
           </div>
           <h2 className="serif" style={{ fontSize: narrow ? 44 : 64, fontWeight: 500, lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0 }}>
             Get a tail number.
@@ -72,12 +72,12 @@ export default function Footer() {
         </form>
       </div>
       <div style={{ display: "flex", gap: narrow ? 16 : 24, flexWrap: "wrap", paddingTop: 28, borderTop: `1px solid #2c2620`, marginBottom: 24 }}>
-        <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
+        <Link href="/ios" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
           ↓ AVIARY iOS APP
-        </a>
-        <a href="#" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
+        </Link>
+        <Link href="/academy" className="mono" style={{ fontSize: 10, color: A.bg, letterSpacing: "0.18em", textDecoration: "underline", textUnderlineOffset: 4 }}>
           → AVIARY ACADEMY
-        </a>
+        </Link>
       </div>
       <div className="mono" style={{ fontSize: 10, color: "#a89e8a", letterSpacing: "0.16em", display: "flex", flexDirection: narrow ? "column" : "row", gap: narrow ? 8 : 0, justifyContent: "space-between", paddingTop: 16, borderTop: `1px solid #2c2620`, alignItems: narrow ? "flex-start" : "center" }}>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>

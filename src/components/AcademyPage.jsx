@@ -131,7 +131,9 @@ export default function AcademyPage() {
               <div
                 key={i}
                 style={{
-                  padding: narrow ? "16px 0" : "20px 16px 4px 0",
+                  paddingTop: narrow ? 16 : 20,
+                  paddingRight: narrow ? 0 : 16,
+                  paddingBottom: narrow ? 16 : 4,
                   borderRight: !narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
                   borderBottom: narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
                   paddingLeft: !narrow && i > 0 ? 16 : 0,
@@ -248,7 +250,7 @@ export default function AcademyPage() {
         </section>
       </Reveal>
 
-      <Reveal><Footer /></Reveal>
+      <Reveal><Footer sectionNumber="04" /></Reveal>
     </div>
   );
 }
