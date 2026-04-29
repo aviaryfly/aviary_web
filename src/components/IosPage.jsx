@@ -16,9 +16,10 @@ const manifest = [
   ["Deliverables handoff with Wi-Fi upload", "SHIPPED"],
   ["Pilot vault for certifications, equipment, insurance, and payouts", "SHIPPED"],
   ["Automated cert verification during onboarding", "SHIPPED"],
+  ["Pre-flight METAR + TAF briefing for current location and next mission", "SHIPPED"],
   ["LAANC submission in the pilot accept flow", "IN BUILD"],
   ["Same-day payouts (Stripe Treasury)", "IN BUILD"],
-  ["Pre-flight NOTAM + weather brief", "DRAFT"],
+  ["Pre-flight NOTAM overlay", "DRAFT"],
 ];
 
 const stColor = (s) => (s === "SHIPPED" ? A.ink : s === "IN BUILD" ? A.mag : A.ink3);
@@ -49,7 +50,7 @@ export default function IosPage() {
               The <em style={{ color: A.mag, fontStyle: "italic" }}>pilot's</em><br />cockpit.
             </h1>
             <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 28px", maxWidth: 480 }}>
-              Built for the 492,000+ FAA remote pilots in U.S. airspace, the app handles the work around each flight: nearby jobs, map-first details, accept flow, pre-flight checks, in-flight context, deliverables, and payout controls. The charter build is being tested while LAANC and payouts move into the native flow.
+              Built for the 492,000+ FAA remote pilots in U.S. airspace, the app handles the work around each flight: nearby jobs, map-first details, accept flow, pre-flight checks, METAR & TAF briefings for here and the next mission, in-flight context, deliverables, and payout controls. The charter build is being tested while LAANC and payouts move into the native flow.
             </p>
             <div style={{ display: "flex", gap: 10, marginBottom: 56, flexWrap: "wrap" }}>
               <Link href="/#contact" className="sans" style={{ fontSize: 13, background: A.ink, color: A.bg, padding: "12px 20px", letterSpacing: "0.04em", fontWeight: 500 }}>

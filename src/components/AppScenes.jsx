@@ -52,8 +52,24 @@ const PILOT_SCENES = [
     chips: ["EN ROUTE", "PRE-FLIGHT", "LAANC ✓"],
   },
   {
+    src: "/screens/pilot-weather-brief.jpg",
+    frame: "FIG. G · WEATHER · CURRENT",
+    title: "METAR for where you stand.",
+    caption:
+      "Live METAR from the nearest reporting station: flight category, wind, visibility, ceiling, temp, altimeter, cloud layers, and the raw text — pulled from aviationweather.gov.",
+    chips: ["MVFR", "WIND 150°/6", "0452Z"],
+  },
+  {
+    src: "/screens/pilot-weather-mission.jpg",
+    frame: "FIG. H · WEATHER · NEXT MISSION",
+    title: "And for where you're going.",
+    caption:
+      "A second briefing for the active gig's destination. METAR, TAF, and the same flight-category read at the job site, so a pilot can call go or no-go before launch.",
+    chips: ["VFR", "KOAK", "TAF + METAR"],
+  },
+  {
     src: "/screens/pilot-inflight.jpg",
-    frame: "FIG. G · IN-FLIGHT HUD",
+    frame: "FIG. I · IN-FLIGHT HUD",
     title: "Flight context in hand.",
     caption:
       "Altitude, speed, distance, battery, and shot list stay visible while capture is underway.",
@@ -62,7 +78,7 @@ const PILOT_SCENES = [
   },
   {
     src: "/screens/pilot-profile.jpg",
-    frame: "FIG. H · PILOT VAULT",
+    frame: "FIG. J · PILOT VAULT",
     title: "The pilot record.",
     caption:
       "Certifications, aircraft, insurance, reviews, and payout details live together so trust checks do not sit in a separate workflow.",
@@ -73,7 +89,7 @@ const PILOT_SCENES = [
 const CUSTOMER_SCENES = [
   {
     src: "/screens/customer-home.jpg",
-    frame: "FIG. I · CUSTOMER HOME",
+    frame: "FIG. K · CUSTOMER HOME",
     title: "A clear place to start.",
     caption:
       "Spend, active jobs, recent pilots, and current status are visible when a customer opens the app.",
@@ -81,7 +97,7 @@ const CUSTOMER_SCENES = [
   },
   {
     src: "/screens/customer-post-job.jpg",
-    frame: "FIG. J · POST A JOB",
+    frame: "FIG. L · POST A JOB",
     title: "Post the job by type.",
     caption:
       "Real estate, inspection, event, or mapping templates set the right fields first; the customer fills location, schedule, deliverables, and payout.",
@@ -89,7 +105,7 @@ const CUSTOMER_SCENES = [
   },
   {
     src: "/screens/customer-my-jobs.jpg",
-    frame: "FIG. K · MY JOBS",
+    frame: "FIG. M · MY JOBS",
     title: "Track work without chasing it.",
     caption:
       "Open and completed jobs are grouped by status, from accepted to in flight to delivered.",
@@ -97,7 +113,7 @@ const CUSTOMER_SCENES = [
   },
   {
     src: "/screens/customer-messages.jpg",
-    frame: "FIG. L · DISPATCH CHAT",
+    frame: "FIG. N · DISPATCH CHAT",
     title: "Messages stay with the job.",
     caption:
       "The chat keeps address, payout, and time pinned at the top so both sides are talking about the same flight.",
@@ -143,7 +159,7 @@ export default function AppScenes() {
             maxWidth: 720,
           }}
         >
-          Eight pilot screens from the current iOS build, moving from home to marketplace, job detail, mission tools, and payout profile. These captures come from the simulator build used for charter pilot feedback.
+          Ten pilot screens from the current iOS build — home to marketplace, job detail, mission tools, METAR & TAF briefings, and payout profile. These captures come from the simulator build used for charter pilot feedback.
         </p>
       </div>
 
