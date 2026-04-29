@@ -118,7 +118,7 @@ export default function Hero({ layout = "split" }) {
             maxWidth: 480,
           }}
         >
-          A marketplace for 492,000+ FAA remote pilots, with LAANC-aware dispatch built into the first job request.
+          The workforce platform for the U.S. commercial drone industry. A marketplace for the 492,000+ FAA Part 107 pilots, with airspace authorization built into the first job request.
         </p>
 
         <div className="hero-step" style={{ "--d": "980ms", display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
@@ -136,8 +136,8 @@ export default function Hero({ layout = "split" }) {
         >
           {[
             ["492,000+", "FAA remote pilots, U.S."],
-            ["60 / 100", "Charter seats filled"],
-            ["LAANC USS", "Pending FAA designation"],
+            ["iOS v0.6", "Current build · in test"],
+            ["LAANC USS", "Designation in progress"],
           ].map(([n, l], i, arr) => (
             <div
               key={i}

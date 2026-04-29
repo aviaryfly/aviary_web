@@ -4,6 +4,7 @@ import IosPage from "./components/IosPage.jsx";
 import AcademyPage from "./components/AcademyPage.jsx";
 import AboutPage from "./components/AboutPage.jsx";
 import ContactPage from "./components/ContactPage.jsx";
+import InvestorsPage from "./components/InvestorsPage.jsx";
 
 export default function App() {
   const [path, setPath] = useState(window.location.pathname);
@@ -29,5 +30,6 @@ export default function App() {
   if (path === "/academy") return <AcademyPage />;
   if (path === "/about") return <AboutPage />;
   if (path === "/contact") return <ContactPage />;
+  if (path === "/investors") return <InvestorsPage />;
   return <DirectionA name="AVIARY" heroLayout="split" />;
 }

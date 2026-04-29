@@ -9,8 +9,8 @@ export default function Faq() {
     ["Is this really a new market?", "Yes. The FAA counted 492,311 remote pilots in 2025, up from 20,362 in 2016, and there is still no dominant workforce platform. Work today is fragmented across one-off contracts, local operators, and DIY job boards."],
     ["What's the moat?", "Becoming an FAA LAANC USS. Authorizations happen inside our platform, not a third party's. No other workforce app has built this."],
     ["Who pays you?", "Customers in real estate, construction, infrastructure, agriculture, public safety, and insurance. Aviary takes 15% of every job."],
-    ["What are the unit economics?", "1% of FAA remote pilots × 2 jobs/month × $600 × 15% take ≈ $10.6M ARR. 1% adoption is achievable in 24 months given there is no incumbent."],
-    ["What about Part 108?", "When BVLOS rules finalize, the workforce platform with the regulatory rails wins. Aviary has filed formal comments on the FAA's Part 108 rule and is architecting for it."],
+    ["What do the unit economics look like?", "Reference math, not a forecast: 1% of the 492K FAA remote pilots × 2 jobs/month × $600 average payout × 15% take ≈ $10.6M ARR. We share this to illustrate the shape of the opportunity, not to project a number."],
+    ["What about Part 108?", "When BVLOS rules finalize, the workforce platform with the regulatory rails wins. Aviary is engaged in the FAA's Part 108 rulemaking and is architecting the platform for it."],
   ];
   return (
     <section style={{ padding: narrow ? "64px 24px 72px" : "88px 48px 96px", borderBottom: `1px solid ${A.line}`, background: A.bg2 }}>

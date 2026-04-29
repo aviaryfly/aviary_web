@@ -159,7 +159,7 @@ export default function AppScenes() {
             maxWidth: 720,
           }}
         >
-          Ten pilot screens from the current iOS build — home to marketplace, job detail, mission tools, METAR & TAF briefings, and payout profile. These captures come from the simulator build used for charter pilot feedback.
+          Ten pilot screens from the current iOS build — home to marketplace, job detail, mission tools, METAR & TAF briefings, and payout profile. These captures come from the iOS v0.6 simulator build.
         </p>
       </div>
 

@@ -49,7 +49,7 @@ export default function IosPreview() {
               maxWidth: 520,
             }}
           >
-            The current build covers pilot home, gig feed, accept flow, map view, in-flight tools, delivery hand-off, chat, profile, and customer posting. These captures come from the simulator build we are using with charter pilot feedback.
+            The current build covers pilot home, gig feed, accept flow, map view, in-flight tools, delivery hand-off, chat, profile, and customer posting. These captures come from the iOS v0.6 simulator build.
           </p>
 
           <div className="mono" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontSize: 10, color: A.ink3, letterSpacing: "0.14em", marginBottom: 28, maxWidth: 420 }}>

@@ -51,7 +51,7 @@ export default function IosPage() {
               The <em style={{ color: A.mag, fontStyle: "italic" }}>pilot's</em><br />cockpit.
             </h1>
             <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 28px", maxWidth: 480 }}>
-              Built for the 492,000+ FAA remote pilots in U.S. airspace, the app handles the work around each flight: nearby jobs, map-first details, accept flow, pre-flight checks, METAR & TAF briefings for here and the next mission, in-flight context, deliverables, and payout controls. The charter build is being tested while LAANC and payouts move into the native flow.
+              Built for the 492,000+ FAA remote pilots in U.S. airspace, the app handles the work around each flight: nearby jobs, map-first details, accept flow, pre-flight checks, METAR & TAF briefings for here and the next mission, in-flight context, deliverables, and payout controls. The current build is in internal testing; LAANC submission and same-day payouts are wiring into the native flow next.
             </p>
             <div style={{ display: "flex", gap: 10, marginBottom: 56, flexWrap: "wrap" }}>
               <Link href="/#contact" className="sans" style={{ fontSize: 13, background: A.ink, color: A.bg, padding: "12px 20px", letterSpacing: "0.04em", fontWeight: 500 }}>
@@ -156,21 +156,21 @@ export default function IosPage() {
           <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.2fr 1fr", gap: narrow ? 32 : 64, alignItems: "end" }}>
             <div>
               <div className="mono" style={{ fontSize: 10, color: A.mag, letterSpacing: "0.16em", marginBottom: 18 }}>
-                ✱ §06 · CHARTER PILOTS · 60 / 100 SEATS
+                ✱ §06 · CHARTER PROGRAM · APPLICATIONS OPEN
               </div>
               <h3 className="serif" style={{ fontSize: narrow ? 32 : 44, fontWeight: 500, lineHeight: 1.02, letterSpacing: "-0.015em", color: A.ink, margin: 0, maxWidth: 640 }}>
                 The first hundred Part 107 pilots shape the network before launch.
               </h3>
               <p className="serif" style={{ fontSize: narrow ? 16 : 18, color: A.ink2, lineHeight: 1.55, margin: "18px 0 0", maxWidth: 540 }}>
-                Charter pilots get TestFlight access, direct founder support, a 0% take rate for the first six months, and a say in the dispatch flow before broader rollout.
+                Charter pilots get early TestFlight access, direct founder support, a 0% take rate for the first six months, and a say in the dispatch flow before broader rollout.
               </p>
             </div>
             <div className="mono" style={{ borderTop: `1px solid ${A.line}` }}>
               {[
                 ["TAKE RATE", "0% / 6 MO"],
-                ["BUILD ACCESS", "TESTFLIGHT"],
+                ["BUILD ACCESS", "EARLY TESTFLIGHT"],
                 ["SUPPORT", "FOUNDER-DIRECT"],
-                ["SEATS LEFT", "40"],
+                ["STATUS", "APPLICATIONS OPEN"],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "16px 0", borderBottom: `1px solid ${A.line}`, fontSize: 11, letterSpacing: "0.14em" }}>
                   <span style={{ color: A.ink3 }}>{k}</span>

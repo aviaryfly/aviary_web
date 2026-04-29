@@ -2,11 +2,14 @@ import { A, SectionHead } from "./shared.jsx";
 import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
+// TODO_VERIFY: confirm exact regulatory status of each row before launch.
+// - LAANC USS designation: "Application in preparation" if not yet submitted; "Application filed [date]" if submitted.
+// - Part 107 Auto-Approval technical report: confirm whether already submitted to FAA or in preparation.
 const stack = [
-  ["LAANC USS", "FAA Low Altitude Authorization. Pending designation."],
+  ["LAANC USS", "FAA airspace authorization. Designation in progress."],
   ["SWIM / SCDS", "Live NOTAM pipeline. Solace JMS to Supabase / PostGIS."],
   ["Airspace Engine", "Class B/C/D/E/G classification. Mode C veil. TFRs."],
-  ["Part 107 Auto-Approval", "Internal technical report, filed with FAA."],
+  ["Part 107 Auto-Approval", "Internal technical report. FAA submission in preparation."],
 ];
 
 export default function Moat() {
@@ -17,7 +20,7 @@ export default function Moat() {
         num="06"
         label="REGULATORY MOAT"
         title="The rails, not just the app."
-        subtitle="Every commercial drone flight needs FAA airspace authorization. Aviary is becoming a LAANC USS, so authorizations happen inside our platform. No other workforce app has even started building this."
+        subtitle="Every commercial drone flight needs FAA airspace authorization. Aviary is pursuing LAANC USS designation so authorizations happen inside our platform. No other workforce app has started building this layer."
       />
 
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.15fr 1fr", gap: narrow ? 48 : 80, marginTop: narrow ? 40 : 64 }}>
@@ -53,8 +56,9 @@ export default function Moat() {
           <h3 className="serif" style={{ fontSize: 38, fontWeight: 500, lineHeight: 1.05, letterSpacing: "-0.015em", color: A.ink, margin: "0 0 18px", maxWidth: 460 }}>
             A marketplace today. <em style={{ color: A.mag, fontStyle: "italic" }}>Critical infrastructure</em> tomorrow.
           </h3>
+          {/* TODO_VERIFY: if Part 108 comment is on regulations.gov, replace generic phrasing with the comment ID for credibility, e.g. "Aviary's formal Part 108 comment is on file with the FAA (regulations.gov ID: FAA-2024-XXXX-NNNN)." */}
           <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 24px", maxWidth: 480 }}>
-            When the FAA finalizes Part 108, beyond-visual-line-of-sight commercial flight opens up: drone delivery, autonomous inspection, at-scale operations. The workforce platform with the regulatory rails wins. Aviary has filed formal comments on the rule and is architecting for it.
+            When the FAA finalizes Part 108, beyond-visual-line-of-sight commercial flight opens up: drone delivery, autonomous inspection, at-scale operations. The workforce platform with the regulatory rails wins. Aviary is engaged in the FAA's Part 108 rulemaking process and is architecting for it.
           </p>
           <div className="mono" style={{ fontSize: 11, color: A.mag, letterSpacing: "0.14em", paddingTop: 16, borderTop: `1px solid ${A.line}` }}>
             ETA ~2027 · BVLOS · DELIVERY · AUTONOMOUS INSPECTION

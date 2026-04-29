@@ -32,7 +32,7 @@ const REELS = [
     eyebrow: "✱ THE CUSTOMER REEL",
     title: "The customer side.",
     cap:
-      "Forty seconds, end to end: post a job by type, watch a charter pilot accept inside four minutes, follow live status, message in context, then rate the deliverable on completion. Real estate template, $340 payout.",
+      "Forty seconds, end to end: post a job by type, watch a pilot accept inside four minutes, follow live status, message in context, then rate the deliverable on completion. Real estate template, $340 payout — recorded scenario from the simulator.",
     chips: ["8 STEPS", "0:39", "iOS v0.6"],
     side: "right",
     beats: [
@@ -103,7 +103,7 @@ export default function DemoReels() {
           }}
         >
           Two short walkthroughs of the iOS v0.6 build, one for each side of the marketplace —
-          captured straight from the simulator used for charter pilot feedback. Editorial chrome,
+          captured straight from the simulator. Editorial chrome,
           FIG callouts, and a magenta progress hairline added in post.
         </p>
       </div>

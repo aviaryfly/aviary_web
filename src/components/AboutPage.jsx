@@ -136,7 +136,7 @@ export default function AboutPage() {
               Built by the engineer flying the airspace they're <em style={{ color: A.mag, fontStyle: "italic" }}>regulating</em>.
             </h1>
             <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.55, color: A.ink2, margin: "0 0 28px", maxWidth: 540 }}>
-              Aviary is the workforce platform for the 492,000+ FAA remote pilots — and the first to build the FAA infrastructure underneath it. One founder, deep in the regulation, shipping every layer of the stack.
+              Aviary is the workforce platform for the U.S. commercial drone industry — a marketplace for the 492,000+ FAA Part 107 pilots, with airspace authorization being built into the core flow. One founder, deep in the regulation, shipping every layer of the stack.
             </p>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <a
@@ -190,6 +190,13 @@ export default function AboutPage() {
               <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 20px", maxWidth: 620 }}>
                 Cornell PhD in bio-inspired and bio-mimetic sensing, planning, and control for flapping-wing micro aerial vehicles. Robotics Engineer. FAA Student Pilot (PPL).
               </p>
+
+              {/* TODO_FILL: rewrite this paragraph in your own voice (mirror of Founders.jsx).
+                  Shape: domain origin → moment of insight → personal commitment. 4 sentences max. */}
+              <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.6, margin: "0 0 24px", maxWidth: 620, fontStyle: "italic" }}>
+                I spent years at Cornell building autonomous flapping-wing aircraft. The deeper I went into autonomy, the clearer it became that the bottleneck for commercial drones isn't the aircraft — it's who is licensed to fly them, where, and under whose airspace authorization. I got my Part 107, started my PPL, and engaged with the FAA on Part 108 because I want to build the rails, not another camera-drone app. Aviary is the company I needed to exist when I started flying.
+              </p>
+
               <Stagger step={70} threshold={0.3} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {ratings.map((r) => (
                   <span key={r} className="mono" style={{ fontSize: 9, padding: "5px 9px", border: `1px solid ${A.line}`, color: A.ink2, letterSpacing: "0.12em", textTransform: "uppercase" }}>{r}</span>
@@ -211,7 +218,7 @@ export default function AboutPage() {
                 Aviary is <em style={{ color: A.mag, fontStyle: "italic" }}>currently raising</em> to expand.
               </h3>
               <p className="serif" style={{ fontSize: narrow ? 16 : 18, color: A.ink2, lineHeight: 1.55, margin: "20px 0 0", maxWidth: 600 }}>
-                The product is shipped, the LAANC USS application is in motion, and pilot demand is real. We're now raising to expand the team, accelerate USS certification, and onboard the first wave of paying customers across real estate, construction, and infrastructure. Investors who care about regulated, infrastructure-grade markets — we'd like to talk.
+                The iOS v0.6 build is complete and in internal testing, the LAANC USS designation work is underway, and the charter pilot program is opening. We're raising to expand the team, accelerate USS certification, and onboard the first wave of paying customers across real estate, construction, and infrastructure. Investors who care about regulated, infrastructure-grade markets — we'd like to talk.
               </p>
               <div style={{ display: "flex", gap: 10, marginTop: 28, flexWrap: "wrap" }}>
                 <a
@@ -228,9 +235,9 @@ export default function AboutPage() {
             </div>
             <div className="mono" style={{ borderTop: `1px solid ${A.line}` }}>
               {[
-                ["STAGE", "EARLY · OPEN"],
+                ["STAGE", "PRE-SEED · OPEN"],
                 ["USE OF FUNDS", "USS · TEAM · GTM"],
-                ["TRACTION", "iOS v0.6 TESTFLIGHT"],
+                ["BUILD STATUS", "iOS v0.6 · IN TEST"],
                 ["CHANNEL", "FOUNDER-DIRECT"],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "16px 0", borderBottom: `1px solid ${A.line}`, fontSize: 11, letterSpacing: "0.14em", gap: 16 }}>

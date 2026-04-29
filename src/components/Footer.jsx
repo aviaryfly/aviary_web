@@ -133,6 +133,9 @@ export default function Footer({ sectionNumber = "07" }) {
         <span>NEW YORK · N40°44.5′ W74°00.2′</span>
         <span>EARLY ACCESS</span>
       </div>
+      <div className="mono" style={{ fontSize: 9, color: "#7a715f", letterSpacing: "0.14em", lineHeight: 1.6, paddingTop: 14, marginTop: 14, borderTop: `1px solid #2c2620`, maxWidth: 720 }}>
+        PRE-LAUNCH. PRODUCT IMAGERY REFLECTS THE iOS v0.6 SIMULATOR BUILD. ALL UNIT-ECONOMIC AND MARKET-SIZING FIGURES ARE ILLUSTRATIVE REFERENCE MATH, NOT FORECASTS. FAA-RELATED STATUSES (LAANC USS, PART 107 AUTO-APPROVAL, PART 108 ENGAGEMENT) REFLECT WORK IN PROGRESS UNLESS A FILING DATE IS STATED.
+      </div>
     </footer>
   );
 }

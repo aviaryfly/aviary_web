@@ -6,9 +6,9 @@ Aviary is the workforce platform for the 492,000+ FAA remote pilots in the U.S. 
 
 This repo is the **marketing site** — Vite + React, brand register. It exists to convince three audiences:
 
-- **Pilots** — to join the charter (60 / 100 seats currently filled)
+- **Pilots** — to apply to the charter program (applications open, pre-launch)
 - **Customers** — to post jobs
-- **Investors** — to take the meeting
+- **Investors** — to take the meeting (private packet at `/investors`)
 
 ## Users
 
