@@ -6,9 +6,9 @@ export default function Nav({ name = "AVIARY" }) {
   const links = [
     ["How", "#how"],
     ["Airspace", "#airspace"],
-    ["Founder", "#about"],
     ["iOS", "/ios"],
     ["Academy", "/academy"],
+    ["About", "/about"],
   ];
   return (
     <header

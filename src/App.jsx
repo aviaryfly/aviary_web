@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DirectionA from "./components/DirectionA.jsx";
 import IosPage from "./components/IosPage.jsx";
 import AcademyPage from "./components/AcademyPage.jsx";
+import AboutPage from "./components/AboutPage.jsx";
 import ContactPage from "./components/ContactPage.jsx";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
 
   if (path === "/ios") return <IosPage />;
   if (path === "/academy") return <AcademyPage />;
+  if (path === "/about") return <AboutPage />;
   if (path === "/contact") return <ContactPage />;
   return <DirectionA name="AVIARY" heroLayout="split" />;
 }

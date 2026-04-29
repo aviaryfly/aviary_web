@@ -6,7 +6,6 @@ import { HowItWorks } from "./HowItWorks.jsx";
 import LiveFeed from "./LiveFeed.jsx";
 import IosPreview from "./IosPreview.jsx";
 import Moat from "./Moat.jsx";
-import Founders from "./Founders.jsx";
 import Faq from "./Faq.jsx";
 import Footer from "./Footer.jsx";
 import Reveal from "./Reveal.jsx";
@@ -21,9 +20,8 @@ export default function DirectionA({ heroLayout = "split", name = "AVIARY" }) {
       <Reveal><LiveFeed /></Reveal>
       <Reveal><IosPreview /></Reveal>
       <Reveal><Moat /></Reveal>
-      <Reveal><Founders /></Reveal>
       <Reveal><Faq /></Reveal>
-      <Reveal><Footer sectionNumber="09" /></Reveal>
+      <Reveal><Footer sectionNumber="08" /></Reveal>
     </div>
   );
 }
