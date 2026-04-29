@@ -4,6 +4,7 @@ import Footer from "./Footer.jsx";
 import Reveal from "./Reveal.jsx";
 import PhoneFrame from "./PhoneFrame.jsx";
 import AppScenes from "./AppScenes.jsx";
+import DemoReels from "./DemoReels.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const manifest = [
@@ -105,12 +106,14 @@ export default function IosPage() {
         </div>
       </section>
 
+      <Reveal><DemoReels /></Reveal>
+
       <Reveal><AppScenes /></Reveal>
 
       <Reveal>
         <section style={{ padding: narrow ? "72px 24px 64px" : "112px 48px 96px", borderBottom: `1px solid ${A.line}` }}>
           <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 16 }}>
-            ✱ §04 · BUILD MANIFEST
+            ✱ §05 · BUILD MANIFEST
           </div>
           <h2 className="serif" style={{ fontSize: narrow ? 40 : 56, fontWeight: 500, lineHeight: 1.02, letterSpacing: "-0.015em", color: A.ink, margin: 0, maxWidth: 900 }}>
             What's shipping, what's in the hangar.
@@ -153,7 +156,7 @@ export default function IosPage() {
           <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.2fr 1fr", gap: narrow ? 32 : 64, alignItems: "end" }}>
             <div>
               <div className="mono" style={{ fontSize: 10, color: A.mag, letterSpacing: "0.16em", marginBottom: 18 }}>
-                ✱ §05 · CHARTER PILOTS · 60 / 100 SEATS
+                ✱ §06 · CHARTER PILOTS · 60 / 100 SEATS
               </div>
               <h3 className="serif" style={{ fontSize: narrow ? 32 : 44, fontWeight: 500, lineHeight: 1.02, letterSpacing: "-0.015em", color: A.ink, margin: 0, maxWidth: 640 }}>
                 The first hundred Part 107 pilots shape the network before launch.
@@ -179,7 +182,7 @@ export default function IosPage() {
         </section>
       </Reveal>
 
-      <Reveal><Footer sectionNumber="06" /></Reveal>
+      <Reveal><Footer sectionNumber="07" /></Reveal>
     </div>
   );
 }

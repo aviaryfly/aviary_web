@@ -133,7 +133,7 @@ export default function AppScenes() {
     >
       <div style={{ padding: narrow ? "0 24px" : "0 48px", marginBottom: narrow ? 40 : 56 }}>
         <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 18 }}>
-          ✱ §03 · CONTACT SHEET · iOS v0.6 · SIMULATOR CAPTURE
+          ✱ §04 · CONTACT SHEET · iOS v0.6 · SIMULATOR CAPTURE
         </div>
         <h2
           className="serif"
