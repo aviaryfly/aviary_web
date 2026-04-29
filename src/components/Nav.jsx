@@ -4,10 +4,8 @@ import { useIsNarrow } from "../hooks/useMediaQuery.js";
 export default function Nav({ name = "AVIARY" }) {
   const narrow = useIsNarrow();
   const links = [
-    ["How", "#how"],
-    ["Airspace", "#airspace"],
+    ["Home", "/"],
     ["iOS", "/ios"],
-    ["Academy", "/academy"],
     ["About", "/about"],
   ];
   return (
