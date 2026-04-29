@@ -57,7 +57,7 @@ const PILOT_SCENES = [
     title: "METAR for where you stand.",
     caption:
       "Live METAR from the nearest reporting station: flight category, wind, visibility, ceiling, temp, altimeter, cloud layers, and the raw text — pulled from aviationweather.gov.",
-    chips: ["MVFR", "WIND 150°/6", "0452Z"],
+    chips: ["VFR", "WIND 150°/7", "0352Z"],
   },
   {
     src: "/screens/pilot-weather-mission.jpg",
