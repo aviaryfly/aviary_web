@@ -161,8 +161,10 @@ input { font: inherit; }
   transform-origin: center;
   transform: scale(0.4);
   transition:
-    opacity   500ms var(--ease-out-quart) var(--dot-delay, 0ms),
-    transform 600ms var(--ease-out-quint) var(--dot-delay, 0ms);
+    opacity     500ms var(--ease-out-quart) var(--dot-delay, 0ms),
+    transform   600ms var(--ease-out-quint) var(--dot-delay, 0ms),
+    stroke-width 200ms var(--ease-out-quart),
+    filter       200ms var(--ease-out-quart);
 }
 [data-reveal="in"] .chart-dot {
   opacity: 1;
@@ -176,6 +178,53 @@ input { font: inherit; }
     transform 900ms var(--ease-out-quint) 1700ms;
 }
 [data-reveal="in"] .chart-ref { opacity: 0.7; transform: translateX(0); }
+
+/* Endpoint attention pulse — paused until the parent reveals, so it never */
+/* runs invisibly off-screen. Two rings offset for cadence.                  */
+.chart-pulse-ring {
+  transform-origin: center;
+  animation: chartPulse 2.6s var(--ease-out-quart) 2.2s infinite;
+  animation-play-state: paused;
+}
+.chart-pulse-ring--late {
+  animation-delay: 3.5s;
+}
+[data-reveal="in"] .chart-pulse-ring { animation-play-state: running; }
+
+@keyframes chartPulse {
+  0%   { r: 6;  opacity: 0;    }
+  10%  { opacity: 0.65;        }
+  100% { r: 26; opacity: 0;    }
+}
+
+.chart-endpoint-core {
+  transform-origin: center;
+  animation: endpointGlow 2.4s ease-in-out 2.2s infinite;
+  animation-play-state: paused;
+}
+[data-reveal="in"] .chart-endpoint-core { animation-play-state: running; }
+
+@keyframes endpointGlow {
+  0%, 100% { r: 5; }
+  50%      { r: 6.4; }
+}
+
+/* Tooltip: subtle pop-in; pointer-events disabled (hit-targets are separate) */
+.chart-tooltip {
+  pointer-events: none;
+  animation: tooltipIn 220ms var(--ease-out-quint) both;
+}
+.chart-tooltip-rect { fill: var(--a-bg); stroke: var(--a-ink); }
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chart-hit { cursor: pointer; outline: none; }
+.chart-dot.is-hover {
+  stroke-width: 4.5;
+  filter: drop-shadow(0 0 6px rgba(200, 21, 108, 0.45));
+}
 
 /* ------------------------------------------------------------------ */
 /* Live feed: status pulse                                             */
@@ -291,6 +340,32 @@ header nav a.sans:hover { color: var(--a-ink); }
 .footer-form:focus-within::after { transform: scaleX(1); }
 
 /* ------------------------------------------------------------------ */
+/* Scene marquee (AppScenes)                                           */
+/* Continuous right-to-left scroll. Content is rendered twice; the     */
+/* track translates -50% over one cycle so the second copy lands       */
+/* exactly where the first started. Pauses on hover.                   */
+/* ------------------------------------------------------------------ */
+.scene-marquee-viewport {
+  position: relative;
+  overflow: hidden;
+}
+.scene-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: sceneMarquee var(--marquee-duration, 60s) linear infinite;
+  will-change: transform;
+}
+.scene-marquee-viewport:hover .scene-marquee-track,
+.scene-marquee-viewport:focus-within .scene-marquee-track {
+  animation-play-state: paused;
+}
+.scene-marquee-item { flex: 0 0 auto; }
+@keyframes sceneMarquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ------------------------------------------------------------------ */
 /* Reduced motion                                                      */
 /* ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
@@ -314,4 +389,6 @@ header nav a.sans:hover { color: var(--a-ink); }
   .chart-dot { opacity: 1; transform: scale(1); }
   .chart-ref { opacity: 0.7; transform: none; }
   .feed-dot { animation: none; }
+  .scene-marquee-track { animation: none; transform: none; width: auto; }
+  .scene-marquee-viewport { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }

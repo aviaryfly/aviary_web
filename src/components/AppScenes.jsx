@@ -184,22 +184,54 @@ export default function AppScenes() {
 }
 
 function SceneRow({ scenes, narrow }) {
+  const gap = narrow ? 28 : 56;
+  const fadeWidth = narrow ? 40 : 80;
+  const secondsPerCard = narrow ? 5 : 6;
+  const duration = Math.max(24, scenes.length * secondsPerCard);
+  const loop = [...scenes, ...scenes];
+
   return (
     <div style={{ position: "relative" }}>
       <div
-        style={{
-          display: "flex",
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
-          gap: narrow ? 28 : 56,
-          padding: narrow ? "16px 24px 64px" : "24px 48px 96px",
-          WebkitOverflowScrolling: "touch",
-        }}
+        className="scene-marquee-viewport"
+        style={{ padding: narrow ? "16px 0 64px" : "24px 0 96px" }}
       >
-        {scenes.map((s, i) => (
-          <SceneCard key={i} scene={s} index={i} total={scenes.length} narrow={narrow} />
-        ))}
+        <div
+          className="scene-marquee-track"
+          style={{ "--marquee-duration": `${duration}s` }}
+        >
+          {loop.map((s, i) => {
+            const isDup = i >= scenes.length;
+            return (
+              <div
+                key={i}
+                className="scene-marquee-item"
+                style={{ marginRight: gap }}
+                aria-hidden={isDup ? "true" : undefined}
+              >
+                <SceneCard
+                  scene={s}
+                  index={i % scenes.length}
+                  total={scenes.length}
+                  narrow={narrow}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          width: fadeWidth,
+          pointerEvents: "none",
+          background: `linear-gradient(to right, ${A.bg}, transparent)`,
+        }}
+      />
       <div
         aria-hidden="true"
         style={{
@@ -207,7 +239,7 @@ function SceneRow({ scenes, narrow }) {
           top: 0,
           right: 0,
           bottom: 0,
-          width: narrow ? 40 : 80,
+          width: fadeWidth,
           pointerEvents: "none",
           background: `linear-gradient(to right, transparent, ${A.bg})`,
         }}
@@ -224,7 +256,7 @@ function SceneRow({ scenes, narrow }) {
           pointerEvents: "none",
         }}
       >
-        DRAG ►
+        ◄ AUTO
       </div>
     </div>
   );

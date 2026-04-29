@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { A, SectionHead } from "./shared.jsx";
 import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
@@ -48,6 +49,12 @@ function RemotePilotChart({ narrow }) {
   const yTicks = [0, 100000, 200000, 300000, 400000, 500000];
   const labelYears = narrow ? new Set([2016, 2019, 2022, 2025]) : new Set(remotePilotData.map((d) => d.year));
 
+  const [hover, setHover] = useState(null);
+
+  const lastIdx = remotePilotData.length - 1;
+  const endpointX = xFor(lastIdx);
+  const endpointY = yFor(remotePilotData[lastIdx].pilots);
+
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
@@ -80,13 +87,28 @@ function RemotePilotChart({ narrow }) {
         strokeLinejoin="round"
         style={{ "--chart-len": 1900 }}
       />
+
+      {/* axes — drawn before dots so dots sit on top */}
+      <line x1={padding.left} x2={padding.left + plotWidth} y1={padding.top + plotHeight} y2={padding.top + plotHeight} stroke={A.line} strokeWidth="1.5" />
+      <line x1={padding.left} x2={padding.left} y1={padding.top} y2={padding.top + plotHeight} stroke={A.line} strokeWidth="1.5" />
+
+      {/* 2025 endpoint pulse — paused until parent reveals */}
+      <circle className="chart-pulse-ring" cx={endpointX} cy={endpointY} r="6" fill="none" stroke={A.mag} strokeWidth="1.4" opacity="0" />
+      <circle className="chart-pulse-ring chart-pulse-ring--late" cx={endpointX} cy={endpointY} r="6" fill="none" stroke={A.mag} strokeWidth="1.2" opacity="0" />
+
+      {/* visible dots */}
       {remotePilotData.map((d, i) => {
         const x = xFor(i);
         const y = yFor(d.pilots);
+        const isLast = i === lastIdx;
+        const cls =
+          "chart-dot" +
+          (hover === i ? " is-hover" : "") +
+          (isLast ? " chart-endpoint-core" : "");
         return (
           <g key={d.year}>
             <circle
-              className="chart-dot"
+              className={cls}
               cx={x}
               cy={y}
               r="5"
@@ -96,26 +118,94 @@ function RemotePilotChart({ narrow }) {
               style={{ "--dot-delay": `${1100 + i * 90}ms` }}
             />
             {labelYears.has(d.year) && (
-              <text x={x} y={padding.top + plotHeight + 28} textAnchor="middle" className="mono" fontSize="10" fill={A.ink3}>
+              <text
+                x={x}
+                y={padding.top + plotHeight + 28}
+                textAnchor="middle"
+                className="mono"
+                fontSize="10"
+                fill={hover === i ? A.ink : A.ink3}
+                style={{ transition: "fill 220ms cubic-bezier(0.22, 1, 0.36, 1)" }}
+              >
                 {d.year}
               </text>
             )}
           </g>
         );
       })}
-      <line x1={padding.left} x2={padding.left + plotWidth} y1={padding.top + plotHeight} y2={padding.top + plotHeight} stroke={A.line} strokeWidth="1.5" />
-      <line x1={padding.left} x2={padding.left} y1={padding.top} y2={padding.top + plotHeight} stroke={A.line} strokeWidth="1.5" />
+
       <g className="chart-ref">
         <line x1={padding.left} x2={padding.left + plotWidth} y1={yFor(492311)} y2={yFor(492311)} stroke={A.ink} strokeWidth="1" strokeDasharray="4 6" />
         <text x={padding.left + plotWidth} y={yFor(492311) - 12} textAnchor="end" className="mono" fontSize="11" fill={A.ink}>
           2025: {formatNumber(492311)}
         </text>
       </g>
+
       <g>
         <text x={padding.left} y={padding.top - 12} className="mono" fontSize="10" fill={A.ink3} letterSpacing="2">
           FAA REMOTE PILOT CERTIFICATES
         </text>
       </g>
+
+      {/* hover/focus targets — large transparent circles, layered on top */}
+      {remotePilotData.map((d, i) => {
+        const x = xFor(i);
+        const y = yFor(d.pilots);
+        return (
+          <circle
+            key={`hit-${d.year}`}
+            className="chart-hit"
+            cx={x}
+            cy={y}
+            r="16"
+            fill="transparent"
+            tabIndex={0}
+            role="button"
+            aria-label={`${d.year}: ${formatNumber(d.pilots)} FAA remote pilots`}
+            onMouseEnter={() => setHover(i)}
+            onMouseLeave={() => setHover(null)}
+            onFocus={() => setHover(i)}
+            onBlur={() => setHover(null)}
+            onTouchStart={() => setHover(i)}
+          />
+        );
+      })}
+
+      {/* tooltip */}
+      {hover !== null && (() => {
+        const d = remotePilotData[hover];
+        const x = xFor(hover);
+        const y = yFor(d.pilots);
+        const tipW = 132;
+        const tipH = 50;
+        const flipX = x > padding.left + plotWidth - tipW - 18;
+        const flipY = y < padding.top + tipH + 12;
+        const tx = flipX ? x - tipW - 12 : x + 12;
+        const ty = flipY ? y + 12 : y - tipH - 12;
+        return (
+          <g className="chart-tooltip" key={`tip-${hover}`}>
+            <line
+              x1={x}
+              y1={y}
+              x2={flipX ? tx + tipW : tx}
+              y2={flipY ? ty : ty + tipH}
+              stroke={A.ink}
+              strokeWidth="0.8"
+              opacity="0.4"
+            />
+            <rect className="chart-tooltip-rect" x={tx} y={ty} width={tipW} height={tipH} />
+            <text x={tx + 12} y={ty + 18} className="mono" fontSize="9" fill={A.ink3} letterSpacing="2">
+              ✱ {d.year}
+            </text>
+            <text x={tx + 12} y={ty + 38} className="serif" fontSize="17" fill={A.ink}>
+              {formatNumber(d.pilots)}
+            </text>
+            <text x={tx + tipW - 12} y={ty + 38} textAnchor="end" className="mono" fontSize="8" fill={A.ink3} letterSpacing="1.4">
+              PILOTS
+            </text>
+          </g>
+        );
+      })()}
     </svg>
   );
 }
