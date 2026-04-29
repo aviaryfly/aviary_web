@@ -16,25 +16,44 @@ export default function Faq() {
     <section style={{ padding: narrow ? "64px 24px 72px" : "88px 48px 96px", borderBottom: `1px solid ${A.line}`, background: A.bg2 }}>
       <SectionHead num="08" label="FREQUENTLY ASKED" title="FAQ." />
       <div style={{ marginTop: 48, borderTop: `1px solid ${A.line}` }}>
-        {items.map(([q, a], i) => (
-          <div key={i} style={{ borderBottom: `1px solid ${A.line}` }}>
-            <button
-              onClick={() => setOpen(open === i ? -1 : i)}
-              style={{ width: "100%", padding: "24px 0", background: "transparent", border: "none", display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "left" }}
-            >
-              <span className="serif" style={{ fontSize: narrow ? 18 : 22, color: A.ink, fontWeight: 500 }}>
-                <span className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.16em", marginRight: 16 }}>
-                  Q.{String(i + 1).padStart(2, "0")}
+        {items.map(([q, a], i) => {
+          const isOpen = open === i;
+          return (
+            <div key={i} style={{ borderBottom: `1px solid ${A.line}` }}>
+              <button
+                className="faq-trigger"
+                aria-expanded={isOpen}
+                onClick={() => setOpen(isOpen ? -1 : i)}
+                style={{
+                  width: "100%",
+                  padding: "24px 0",
+                  background: "transparent",
+                  border: "none",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  textAlign: "left",
+                  color: A.ink,
+                }}
+              >
+                <span className="serif" style={{ fontSize: narrow ? 18 : 22, color: "inherit", fontWeight: 500 }}>
+                  <span className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.16em", marginRight: 16 }}>
+                    Q.{String(i + 1).padStart(2, "0")}
+                  </span>
+                  {q}
                 </span>
-                {q}
-              </span>
-              <span className="mono" style={{ fontSize: 18, color: A.ink2 }}>{open === i ? "−" : "+"}</span>
-            </button>
-            {open === i && (
-              <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 28px", maxWidth: 880 }}>{a}</p>
-            )}
-          </div>
-        ))}
+                <span className="mono faq-icon" style={{ fontSize: 18, color: A.ink2, display: "inline-block", width: 14, textAlign: "center" }}>{isOpen ? "−" : "+"}</span>
+              </button>
+              <div className="faq-answer" data-open={isOpen}>
+                <div>
+                  <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 28px", maxWidth: 880 }}>
+                    {a}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -1,43 +1,84 @@
-import { useEffect, useRef, useState } from "react";
+import { Children, cloneElement, isValidElement, useEffect, useRef, useState } from "react";
 
-export default function Reveal({ children, blur = 14, fade = 0.25 }) {
+function useInView(once = true, threshold = 0.12, rootMargin = "-6% 0px -6% 0px") {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduced(mq.matches);
-    sync();
-    mq.addEventListener?.("change", sync);
-    return () => mq.removeEventListener?.("change", sync);
-  }, []);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.08, rootMargin: "-8% 0px -8% 0px" }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          if (once) obs.disconnect();
+        } else if (!once) {
+          setInView(false);
+        }
+      },
+      { threshold, rootMargin }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [once, threshold, rootMargin]);
 
-  if (reduced) return <>{children}</>;
+  return { ref, inView };
+}
+
+export default function Reveal({
+  children,
+  as: Tag = "div",
+  direction = "up",
+  threshold = 0.12,
+  rootMargin = "-6% 0px -6% 0px",
+  style,
+  className,
+  ...rest
+}) {
+  const { ref, inView } = useInView(true, threshold, rootMargin);
+  const dataValue = direction === "up" ? (inView ? "in" : "out") : direction;
 
   return (
-    <div
+    <Tag
       ref={ref}
-      style={{
-        filter: visible ? "blur(0px)" : `blur(${blur}px)`,
-        opacity: visible ? 1 : fade,
-        transition:
-          "filter 720ms cubic-bezier(0.22, 1, 0.36, 1), opacity 720ms cubic-bezier(0.22, 1, 0.36, 1)",
-        willChange: "filter, opacity",
-      }}
+      data-reveal={dataValue}
+      data-reveal-state={inView ? "in" : "out"}
+      className={className}
+      style={style}
+      {...rest}
     >
       {children}
-    </div>
+    </Tag>
   );
 }
+
+// Wrap N children with auto-incrementing --i style for staggered entrance.
+export function Stagger({
+  children,
+  as: Tag = "div",
+  step = 90,
+  threshold = 0.18,
+  rootMargin = "-6% 0px -6% 0px",
+  className,
+  style,
+}) {
+  const { ref, inView } = useInView(true, threshold, rootMargin);
+  const items = Children.toArray(children);
+
+  return (
+    <Tag
+      ref={ref}
+      data-reveal-stagger={inView ? "in" : "out"}
+      className={className}
+      style={{ "--stagger": `${step}ms`, ...style }}
+    >
+      {items.map((child, i) => {
+        if (!isValidElement(child)) return child;
+        const childStyle = { ...(child.props.style || {}), "--i": i };
+        return cloneElement(child, { key: child.key ?? i, style: childStyle });
+      })}
+    </Tag>
+  );
+}
+
+export { useInView };

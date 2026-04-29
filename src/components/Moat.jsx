@@ -1,4 +1,5 @@
 import { A, SectionHead } from "./shared.jsx";
+import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const stack = [
@@ -24,14 +25,25 @@ export default function Moat() {
           <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.16em", marginBottom: 20 }}>
             ✱ INFRASTRUCTURE STACK
           </div>
-          <div style={{ borderTop: `1px solid ${A.line}` }}>
+          <Stagger step={120} style={{ borderTop: `1px solid ${A.line}` }}>
             {stack.map(([k, v]) => (
-              <div key={k} style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "180px 1fr", gap: narrow ? 6 : 0, padding: "18px 0", borderBottom: `1px solid ${A.line}`, alignItems: "baseline" }}>
+              <div
+                key={k}
+                className="row-fill"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: narrow ? "1fr" : "180px 1fr",
+                  gap: narrow ? 6 : 0,
+                  padding: "18px 0",
+                  borderBottom: `1px solid ${A.line}`,
+                  alignItems: "baseline",
+                }}
+              >
                 <div className="mono" style={{ fontSize: 12, color: A.ink, letterSpacing: "0.04em", textTransform: "uppercase" }}>{k}</div>
                 <div className="serif" style={{ fontSize: 16, color: A.ink2, lineHeight: 1.45 }}>{v}</div>
               </div>
             ))}
-          </div>
+          </Stagger>
         </div>
 
         <div>

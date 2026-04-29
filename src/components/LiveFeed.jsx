@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { A, SectionHead, Stat } from "./shared.jsx";
+import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 export default function LiveFeed() {
@@ -13,9 +14,11 @@ export default function LiveFeed() {
   ];
   const [jobs, setJobs] = useState(initial);
   const [tick, setTick] = useState(0);
+  const [flashId, setFlashId] = useState(null);
+  const flashTimer = useRef(null);
 
   useEffect(() => {
-    const i = setInterval(() => setTick((t) => t + 1), 2400);
+    const i = setInterval(() => setTick((t) => t + 1), 2800);
     return () => clearInterval(i);
   }, []);
 
@@ -26,10 +29,18 @@ export default function LiveFeed() {
       const order = ["open", "matched", "flying", "complete"];
       const idx = Math.floor(Math.random() * next.length);
       const cur = order.indexOf(next[idx].st);
-      if (cur < order.length - 1) next[idx] = { ...next[idx], st: order[cur + 1] };
+      if (cur < order.length - 1) {
+        next[idx] = { ...next[idx], st: order[cur + 1] };
+        const id = next[idx].id;
+        setFlashId(id);
+        clearTimeout(flashTimer.current);
+        flashTimer.current = setTimeout(() => setFlashId(null), 1400);
+      }
       return next;
     });
   }, [tick]);
+
+  useEffect(() => () => clearTimeout(flashTimer.current), []);
 
   const stColors = { open: A.ink3, matched: A.ink, flying: A.mag, complete: A.ink2 };
 
@@ -50,30 +61,52 @@ export default function LiveFeed() {
           <div style={{ minWidth: narrow ? 560 : "auto" }}>
             <div className="mono" style={{ padding: "0 32px 16px", fontSize: 10, letterSpacing: "0.18em", color: A.ink3, display: "flex", justifyContent: "space-between", borderBottom: `1px solid ${A.line}`, paddingBottom: 14 }}>
               <span>✱ LIVE JOB FEED · NY METRO</span>
-              <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <span style={{ width: 6, height: 6, borderRadius: 6, background: A.mag, display: "inline-block" }} />
+              <span style={{ display: "flex", alignItems: "center", gap: 0, color: A.mag }}>
+                <span className="feed-dot" style={{ color: A.mag }} />
                 5 JOBS / 30 NM
               </span>
             </div>
             <div className="mono" style={{ display: "grid", gridTemplateColumns: "44px 88px 1fr 80px 70px 90px", padding: "12px 32px", fontSize: 9, color: A.ink3, letterSpacing: "0.14em", borderBottom: `1px solid ${A.line2}` }}>
               <span>T-MIN</span><span>JOB ID</span><span>TASK / LOCATION</span><span>CLASS</span><span>FEE</span><span>STATUS</span>
             </div>
-            {jobs.map((j) => (
-              <div key={j.id} className="mono" style={{ display: "grid", gridTemplateColumns: "44px 88px 1fr 80px 70px 90px", padding: "16px 32px", fontSize: 12, color: A.ink, borderBottom: `1px solid ${A.line2}`, alignItems: "center" }}>
-                <span style={{ color: A.ink3 }}>−{String(j.t).padStart(2, "0")}m</span>
-                <span style={{ color: A.ink2 }}>{j.id}</span>
-                <span>
-                  <span className="serif" style={{ fontStyle: "italic", marginRight: 10 }}>{j.task}</span>
-                  <span style={{ color: A.ink3 }}>{j.loc}</span>
-                </span>
-                <span>{j.cls}</span>
-                <span>${j.fee}</span>
-                <span style={{ color: stColors[j.st], textTransform: "uppercase", letterSpacing: "0.14em", fontSize: 10 }}>
-                  {j.st === "flying" && <span style={{ marginRight: 6 }}>●</span>}
-                  {j.st}
-                </span>
-              </div>
-            ))}
+            <Stagger step={90} threshold={0.18}>
+              {jobs.map((j) => (
+                <div
+                  key={j.id}
+                  className={`mono${flashId === j.id ? " feed-flash" : ""}`}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "44px 88px 1fr 80px 70px 90px",
+                    padding: "16px 32px",
+                    fontSize: 12,
+                    color: A.ink,
+                    borderBottom: `1px solid ${A.line2}`,
+                    alignItems: "center",
+                  }}
+                >
+                  <span style={{ color: A.ink3 }}>−{String(j.t).padStart(2, "0")}m</span>
+                  <span style={{ color: A.ink2 }}>{j.id}</span>
+                  <span>
+                    <span className="serif" style={{ fontStyle: "italic", marginRight: 10 }}>{j.task}</span>
+                    <span style={{ color: A.ink3 }}>{j.loc}</span>
+                  </span>
+                  <span>{j.cls}</span>
+                  <span>${j.fee}</span>
+                  <span
+                    style={{
+                      color: stColors[j.st],
+                      textTransform: "uppercase",
+                      letterSpacing: "0.14em",
+                      fontSize: 10,
+                      transition: "color 360ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                  >
+                    {j.st === "flying" && <span className="feed-dot" style={{ color: A.mag }} />}
+                    {j.st}
+                  </span>
+                </div>
+              ))}
+            </Stagger>
           </div>
         </div>
       </div>

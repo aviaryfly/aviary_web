@@ -1,4 +1,5 @@
 import { A, SectionHead } from "./shared.jsx";
+import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const remotePilotData = [
@@ -68,14 +69,32 @@ function RemotePilotChart({ narrow }) {
           </g>
         );
       })}
-      <polygon points={areaPoints} fill={A.mag} opacity="0.08" />
-      <polyline points={points} fill="none" stroke={A.mag} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      <polygon className="chart-area-fill" points={areaPoints} fill={A.mag} />
+      <polyline
+        className="chart-line"
+        points={points}
+        fill="none"
+        stroke={A.mag}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ "--chart-len": 1900 }}
+      />
       {remotePilotData.map((d, i) => {
         const x = xFor(i);
         const y = yFor(d.pilots);
         return (
           <g key={d.year}>
-            <circle cx={x} cy={y} r="5" fill={A.bg} stroke={A.mag} strokeWidth="3" />
+            <circle
+              className="chart-dot"
+              cx={x}
+              cy={y}
+              r="5"
+              fill={A.bg}
+              stroke={A.mag}
+              strokeWidth="3"
+              style={{ "--dot-delay": `${1100 + i * 90}ms` }}
+            />
             {labelYears.has(d.year) && (
               <text x={x} y={padding.top + plotHeight + 28} textAnchor="middle" className="mono" fontSize="10" fill={A.ink3}>
                 {d.year}
@@ -86,8 +105,8 @@ function RemotePilotChart({ narrow }) {
       })}
       <line x1={padding.left} x2={padding.left + plotWidth} y1={padding.top + plotHeight} y2={padding.top + plotHeight} stroke={A.line} strokeWidth="1.5" />
       <line x1={padding.left} x2={padding.left} y1={padding.top} y2={padding.top + plotHeight} stroke={A.line} strokeWidth="1.5" />
-      <g>
-        <line x1={padding.left} x2={padding.left + plotWidth} y1={yFor(492311)} y2={yFor(492311)} stroke={A.ink} strokeWidth="1" strokeDasharray="4 6" opacity="0.45" />
+      <g className="chart-ref">
+        <line x1={padding.left} x2={padding.left + plotWidth} y1={yFor(492311)} y2={yFor(492311)} stroke={A.ink} strokeWidth="1" strokeDasharray="4 6" />
         <text x={padding.left + plotWidth} y={yFor(492311) - 12} textAnchor="end" className="mono" fontSize="11" fill={A.ink}>
           2025: {formatNumber(492311)}
         </text>
@@ -115,7 +134,10 @@ export default function MarketDemand() {
 
       <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.35fr", gap: narrow ? 40 : 64, marginTop: narrow ? 40 : 60, alignItems: "start" }}>
         <div>
-          <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr 1fr" : "1fr", gap: 0, borderTop: `1px solid ${A.line}` }}>
+          <Stagger
+            step={110}
+            style={{ display: "grid", gridTemplateColumns: narrow ? "1fr 1fr" : "1fr", gap: 0, borderTop: `1px solid ${A.line}` }}
+          >
             {marketStats.map(([n, l], i) => (
               <div
                 key={l}
@@ -136,7 +158,7 @@ export default function MarketDemand() {
                 </div>
               </div>
             ))}
-          </div>
+          </Stagger>
           <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "24px 0 0", maxWidth: 480 }}>
             Hardware investment creates flight demand, but every inspection, delivery route, construction scan, and insurance claim still needs a qualified operator when autonomy is not approved or not economical.
           </p>
@@ -153,7 +175,10 @@ export default function MarketDemand() {
                 Aviary is the workforce layer for the domestic drone buildout: a national pool of certified pilots that can be matched to enterprise work without each company maintaining its own high-touch pilot operation.
               </p>
             </div>
-            <div style={{ borderTop: narrow ? `1px solid ${A.line2}` : "none", paddingTop: narrow ? 18 : 0 }}>
+            <Stagger
+              step={110}
+              style={{ borderTop: narrow ? `1px solid ${A.line2}` : "none", paddingTop: narrow ? 18 : 0 }}
+            >
               {thesis.map((item, i) => (
                 <div key={item} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: 10, padding: i === 0 ? "0 0 12px" : "12px 0", borderTop: i === 0 ? "none" : `1px solid ${A.line2}` }}>
                   <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.12em" }}>
@@ -164,7 +189,7 @@ export default function MarketDemand() {
                   </div>
                 </div>
               ))}
-            </div>
+            </Stagger>
           </div>
           <a
             href={sourceHref}

@@ -30,7 +30,7 @@ export default function Footer({ sectionNumber = "07" }) {
             We're onboarding a closed group of pilots and customers. Tell us who you are and we'll be in touch as access opens.
           </p>
         </div>
-        <form onSubmit={submit}>
+        <form onSubmit={submit} className="footer-form">
           <div style={{ display: "flex", borderBottom: `1px solid #5a5040` }}>
             <input
               required

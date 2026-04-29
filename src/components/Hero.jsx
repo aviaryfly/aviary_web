@@ -1,39 +1,77 @@
+import { useEffect, useState } from "react";
 import { A, btnPrimary, btnGhost } from "./shared.jsx";
 import AirspaceMap from "./AirspaceMap.jsx";
 import PhoneFrame from "./PhoneFrame.jsx";
 import { useIsNarrow, useIsTablet } from "../hooks/useMediaQuery.js";
 
+// Word-level fade for "The workforce / for the sky." with magenta italic on "sky".
+function HeroHeadline({ size }) {
+  const lines = [
+    [{ text: "The", d: 0 }, { text: "workforce", d: 90 }],
+    [{ text: "for", d: 220 }, { text: "the", d: 290 }, { text: "sky.", d: 380, accent: true }],
+  ];
+  return (
+    <h1
+      className="serif"
+      style={{
+        fontSize: size,
+        fontWeight: 500,
+        lineHeight: 0.96,
+        letterSpacing: "-0.02em",
+        color: A.ink,
+        margin: "0 0 24px",
+      }}
+    >
+      {lines.map((words, lineIdx) => (
+        <span key={lineIdx} style={{ display: "block" }}>
+          {words.map((t, i) => (
+            <span
+              key={i}
+              className="hero-headline-word"
+              style={{
+                "--d": `${260 + t.d}ms`,
+                color: t.accent ? A.mag : A.ink,
+                fontStyle: t.accent ? "italic" : "normal",
+                marginRight: i < words.length - 1 ? "0.28em" : 0,
+              }}
+            >
+              {t.text}
+            </span>
+          ))}
+        </span>
+      ))}
+    </h1>
+  );
+}
+
 export default function Hero({ layout = "split" }) {
   const narrow = useIsNarrow();
   const compact = useIsTablet();
+  const [entered, setEntered] = useState(false);
+
+  useEffect(() => {
+    const t = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(t);
+  }, []);
+
   const phoneGap = narrow ? 8 : compact ? 12 : 24;
   const mapPhoneWidth = narrow ? 150 : compact ? 160 : 220;
   const detailPhoneWidth = narrow ? 178 : compact ? 195 : 260;
+
+  const heroClass = entered ? "hero-enter" : "";
+
   if (layout === "stacked") {
     return (
-      <section style={{ padding: "80px 48px 60px", borderBottom: `1px solid ${A.line}` }}>
-        <div className="mono" style={{ fontSize: 11, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}>
+      <section className={heroClass} style={{ padding: "80px 48px 60px", borderBottom: `1px solid ${A.line}` }}>
+        <div className="mono hero-step" style={{ "--d": "60ms", fontSize: 11, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}>
           ✱ EST. 2026 · NEW YORK SECTIONAL · 56TH EDITION
         </div>
-        <h1
-          className="serif"
-          style={{
-            fontSize: 96,
-            fontWeight: 500,
-            lineHeight: 0.95,
-            letterSpacing: "-0.02em",
-            color: A.ink,
-            margin: "0 0 32px",
-            maxWidth: 1100,
-          }}
-        >
-          The workforce<br />for the <em style={{ color: A.mag, fontStyle: "italic" }}>sky</em>.
-        </h1>
+        <HeroHeadline size={96} />
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "end" }}>
-          <p className="serif" style={{ fontSize: 22, lineHeight: 1.45, color: A.ink2, margin: 0, maxWidth: 620 }}>
+          <p className="serif hero-step" style={{ "--d": "780ms", fontSize: 22, lineHeight: 1.45, color: A.ink2, margin: 0, maxWidth: 620 }}>
             Aviary connects businesses with FAA-certified Part 107 pilots and gives each job a dispatch workflow that starts with airspace, equipment, availability, and delivery requirements.
           </p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
+          <div className="hero-step" style={{ "--d": "920ms", display: "flex", gap: 12, justifyContent: "flex-end" }}>
             <button className="sans" style={btnPrimary}>Post a job →</button>
             <button className="sans" style={btnGhost}>Join as a pilot</button>
           </div>
@@ -43,32 +81,59 @@ export default function Hero({ layout = "split" }) {
   }
 
   return (
-    <section style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.25fr", borderBottom: `1px solid ${A.line}`, minHeight: narrow ? 0 : 620 }}>
-      <div style={{ padding: narrow ? "48px 24px 40px" : "72px 48px 64px", borderRight: narrow ? "none" : `1px solid ${A.line}`, borderBottom: narrow ? `1px solid ${A.line}` : "none", position: "relative" }}>
-        <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}>
+    <section
+      className={heroClass}
+      style={{
+        display: "grid",
+        gridTemplateColumns: narrow ? "1fr" : "1fr 1.25fr",
+        borderBottom: `1px solid ${A.line}`,
+        minHeight: narrow ? 0 : 620,
+      }}
+    >
+      <div
+        style={{
+          padding: narrow ? "48px 24px 40px" : "72px 48px 64px",
+          borderRight: narrow ? "none" : `1px solid ${A.line}`,
+          borderBottom: narrow ? `1px solid ${A.line}` : "none",
+          position: "relative",
+        }}
+      >
+        <div
+          className="mono hero-step"
+          style={{ "--d": "40ms", fontSize: 10, color: A.ink3, letterSpacing: "0.18em", marginBottom: 28 }}
+        >
           ✱ AVIARY / SHEET 01 / WORKFORCE FOR THE SKY
         </div>
-        <h1
-          className="serif"
+
+        <HeroHeadline size={narrow ? 56 : 78} />
+
+        <p
+          className="serif hero-step"
           style={{
-            fontSize: narrow ? 56 : 78,
-            fontWeight: 500,
-            lineHeight: 0.96,
-            letterSpacing: "-0.02em",
-            color: A.ink,
-            margin: "0 0 24px",
+            "--d": "820ms",
+            fontSize: narrow ? 17 : 19,
+            lineHeight: 1.5,
+            color: A.ink2,
+            margin: "0 0 32px",
+            maxWidth: 480,
           }}
         >
-          The workforce<br />for the <em style={{ color: A.mag, fontStyle: "italic" }}>sky</em>.
-        </h1>
-        <p className="serif" style={{ fontSize: narrow ? 17 : 19, lineHeight: 1.5, color: A.ink2, margin: "0 0 32px", maxWidth: 480 }}>
           A marketplace for 492,000+ FAA remote pilots, with LAANC-aware dispatch built into the first job request.
         </p>
-        <div style={{ display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
+
+        <div className="hero-step" style={{ "--d": "980ms", display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
           <a href="#contact" className="sans" style={{ ...btnPrimary, display: "inline-block" }}>Post a job →</a>
           <a href="#contact" className="sans" style={{ ...btnGhost, display: "inline-block" }}>Join as a pilot</a>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr 1fr", gap: 0, borderTop: `1px solid ${A.line}` }}>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: narrow ? "1fr" : "1fr 1fr 1fr",
+            gap: 0,
+            borderTop: `1px solid ${A.line}`,
+          }}
+        >
           {[
             ["492,000+", "FAA remote pilots, U.S."],
             ["60 / 100", "Charter seats filled"],
@@ -76,7 +141,9 @@ export default function Hero({ layout = "split" }) {
           ].map(([n, l], i, arr) => (
             <div
               key={i}
+              className="hero-step hero-stat-cell"
               style={{
+                "--d": `${1100 + i * 110}ms`,
                 paddingTop: narrow ? 16 : 20,
                 paddingBottom: narrow ? 16 : 20,
                 borderRight: !narrow && i < arr.length - 1 ? `1px solid ${A.line}` : "none",
@@ -91,18 +158,27 @@ export default function Hero({ layout = "split" }) {
           ))}
         </div>
       </div>
+
       <div style={{ position: "relative", background: A.bg2, minHeight: narrow ? 420 : 0, overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
+        <div className="hero-map" style={{ position: "absolute", inset: 0 }}>
           <AirspaceMap />
         </div>
-        <div className="mono" style={{ position: "absolute", top: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}>
+
+        <div
+          className="mono hero-step"
+          style={{ "--d": "640ms", position: "absolute", top: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}
+        >
           BERKELEY · 37.87°N 122.27°W · 8 OPEN / 10 NM
         </div>
         {!narrow && (
-          <div className="mono" style={{ position: "absolute", top: 16, right: 16, fontSize: 9, color: A.mag, letterSpacing: "0.14em", zIndex: 3 }}>
+          <div
+            className="mono hero-step"
+            style={{ "--d": "720ms", position: "absolute", top: 16, right: 16, fontSize: 9, color: A.mag, letterSpacing: "0.14em", zIndex: 3 }}
+          >
             ● iOS v0.6 · SIMULATOR CAPTURE
           </div>
         )}
+
         <div
           style={{
             position: "absolute",
@@ -125,8 +201,12 @@ export default function Hero({ layout = "split" }) {
             }}
           >
             <div
+              className="hero-phone"
               style={{
-                transform: narrow ? "translateY(14px) rotate(-2deg)" : "translateY(20px) rotate(-2.4deg)",
+                "--d": "520ms",
+                "--phone-rest": narrow
+                  ? "translateY(14px) rotate(-2deg) scale(1)"
+                  : "translateY(20px) rotate(-2.4deg) scale(1)",
                 filter: "saturate(0.95)",
               }}
             >
@@ -137,8 +217,12 @@ export default function Hero({ layout = "split" }) {
               />
             </div>
             <div
+              className="hero-phone"
               style={{
-                transform: narrow ? "translateY(-12px) rotate(1.2deg)" : "translateY(-18px) rotate(1.8deg)",
+                "--d": "700ms",
+                "--phone-rest": narrow
+                  ? "translateY(-12px) rotate(1.2deg) scale(1)"
+                  : "translateY(-18px) rotate(1.8deg) scale(1)",
               }}
             >
               <PhoneFrame
@@ -149,13 +233,20 @@ export default function Hero({ layout = "split" }) {
             </div>
           </div>
         </div>
+
         {!narrow && (
-          <div className="mono" style={{ position: "absolute", bottom: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}>
+          <div
+            className="mono hero-step"
+            style={{ "--d": "1000ms", position: "absolute", bottom: 16, left: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}
+          >
             FIG. 01 · DISPATCH + GIG DETAIL
           </div>
         )}
         {!narrow && (
-          <div className="mono" style={{ position: "absolute", bottom: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}>
+          <div
+            className="mono hero-step"
+            style={{ "--d": "1080ms", position: "absolute", bottom: 16, right: 16, fontSize: 9, color: A.ink3, letterSpacing: "0.14em", zIndex: 3 }}
+          >
             ALT 0 AGL · CLASS G · UTC −08:00
           </div>
         )}

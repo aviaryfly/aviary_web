@@ -1,4 +1,5 @@
 import { A, SectionHead } from "./shared.jsx";
+import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const oldWay = [
@@ -36,7 +37,7 @@ export function HowItWorks() {
           <div className="mono" style={{ fontSize: 10, color: A.ink3, letterSpacing: "0.16em", marginBottom: 18 }}>
             ✱ TRADITIONAL WAY
           </div>
-          <div style={{ borderTop: `1px solid ${A.line}` }}>
+          <Stagger step={110} style={{ borderTop: `1px solid ${A.line}` }}>
             {oldWay.map(([title, body], i) => (
               <div key={title} style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "132px 1fr", gap: narrow ? 8 : 24, padding: "20px 0", borderBottom: `1px solid ${A.line}` }}>
                 <div className="mono" style={{ fontSize: 11, color: A.mag, letterSpacing: "0.14em", textTransform: "uppercase" }}>
@@ -47,7 +48,7 @@ export function HowItWorks() {
                 </p>
               </div>
             ))}
-          </div>
+          </Stagger>
         </div>
 
         <div style={{ background: A.bg2, borderTop: `1px solid ${A.line}`, borderBottom: `1px solid ${A.line}`, padding: narrow ? "24px 0" : "28px 32px" }}>
@@ -68,10 +69,15 @@ export function HowItWorks() {
       <div className="mono" style={{ fontSize: 10, color: A.mag, letterSpacing: "0.16em", marginTop: narrow ? 44 : 64, marginBottom: 18 }}>
         ✱ AVIARY WAY
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.4fr 1fr 1fr 1fr", borderTop: `1px solid ${A.line}` }}>
+      <Stagger
+        step={130}
+        threshold={0.2}
+        style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.4fr 1fr 1fr 1fr", borderTop: `1px solid ${A.line}` }}
+      >
         {steps.map((s, i) => (
           <div
             key={s.n}
+            className="step-trace"
             style={{
               padding: narrow ? "24px 0" : i === 0 ? "32px 32px 40px 0" : "32px 24px 40px",
               borderRight: !narrow && i < 3 ? `1px solid ${A.line}` : "none",
@@ -90,7 +96,7 @@ export function HowItWorks() {
             </p>
           </div>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { A, Link } from "./shared.jsx";
 import PhoneFrame from "./PhoneFrame.jsx";
+import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const previews = [
@@ -116,7 +117,9 @@ export default function IosPreview() {
             ● SIMULATOR CAPTURE
           </div>
 
-          <div
+          <Stagger
+            step={140}
+            threshold={0.22}
             style={{
               display: "flex",
               justifyContent: "center",
@@ -131,6 +134,7 @@ export default function IosPreview() {
                 style={{
                   transform: `translateY(${p.lift}px) rotate(${p.angle}deg)`,
                   filter: i % 2 === 0 ? "saturate(0.95)" : "none",
+                  transition: "transform 900ms cubic-bezier(0.22, 1, 0.36, 1)",
                 }}
               >
                 <PhoneFrame
@@ -142,7 +146,7 @@ export default function IosPreview() {
                 />
               </div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
     </section>

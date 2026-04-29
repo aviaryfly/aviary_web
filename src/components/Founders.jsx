@@ -1,4 +1,5 @@
 import { A, SectionHead } from "./shared.jsx";
+import { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 export default function Founders() {
@@ -18,11 +19,11 @@ export default function Founders() {
           <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.55, margin: "0 0 20px", maxWidth: 620 }}>
             Cornell PhD in flight control for unmanned aircraft. Authored Aviary's Part 107 Auto-Approval technical report and filed formal comments on the FAA's Part 108 BVLOS rule. Built the LAANC USS infrastructure end-to-end: SWIM/SCDS NOTAM pipeline, airspace classification engine, and the iOS workforce app.
           </p>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Stagger step={70} threshold={0.3} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {ratings.map((r) => (
               <span key={r} className="mono" style={{ fontSize: 9, padding: "5px 9px", border: `1px solid ${A.line}`, color: A.ink2, letterSpacing: "0.12em", textTransform: "uppercase" }}>{r}</span>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
     </section>
