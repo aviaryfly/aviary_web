@@ -5,7 +5,7 @@ import Reveal, { Stagger } from "./Reveal.jsx";
 import { useIsNarrow } from "../hooks/useMediaQuery.js";
 
 const FOUNDER_EMAIL = "xinyu@aviaryfly.com";
-const ratings = ["PhD · Cornell", "PPL · in training", "FAA regulations · safety"];
+const ratings = ["PhD · Cornell", "PPL · in training"];
 
 function EnrouteChart() {
   const RWY_X = 210;

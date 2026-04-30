@@ -57,9 +57,6 @@ export default function IosPage() {
               <Link href="/#contact" className="sans" style={{ fontSize: 13, background: A.ink, color: A.bg, padding: "12px 20px", letterSpacing: "0.04em", fontWeight: 500 }}>
                 Join TestFlight →
               </Link>
-              <Link href="/#contact" className="sans" style={{ fontSize: 13, background: "transparent", color: A.ink, border: `1px solid ${A.ink}`, padding: "12px 20px", letterSpacing: "0.04em", fontWeight: 500 }}>
-                Become a charter pilot
-              </Link>
             </div>
           </div>
 
