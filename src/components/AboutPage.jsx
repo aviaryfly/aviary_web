@@ -183,7 +183,7 @@ export default function AboutPage() {
             <div>
               <h3 className="serif" style={{ fontSize: 28, color: A.ink, fontWeight: 500, margin: "0 0 6px" }}>Xinyu Fang</h3>
               <div className="mono" style={{ fontSize: 11, color: A.mag, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                Founder · FAA Infrastructure
+                Founder
               </div>
             </div>
             <div>
