@@ -62,8 +62,8 @@ export default function IosPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr 1fr", borderTop: `1px solid ${A.line}` }}>
             {[
-              ["Q3 2026", "Public TestFlight"],
-              ["iOS 17+", "Minimum OS"],
+              ["Available now", "Public TestFlight"],
+              ["iOS 26+", "Minimum OS"],
               ["v0.6", "Current build"],
             ].map(([n, l], i, arr) => (
               <div

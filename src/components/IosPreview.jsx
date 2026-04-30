@@ -56,8 +56,8 @@ export default function IosPreview() {
             {[
               ["9 SCREENS", "current build"],
               ["2 IN BUILD", "LAANC · payouts"],
-              ["iOS 17+", "minimum OS"],
-              ["Q3 2026", "public TestFlight"],
+              ["iOS 26+", "minimum OS"],
+              ["Available now", "public TestFlight"],
             ].map(([n, l], i) => (
               <div key={i} style={{ borderTop: `1px solid ${A.line}`, padding: "14px 0" }}>
                 <div className="serif" style={{ fontSize: 22, color: A.ink, lineHeight: 1, fontStyle: "italic", letterSpacing: "-0.01em" }}>{n}</div>

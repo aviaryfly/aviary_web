@@ -39,7 +39,7 @@ const MILESTONES = [
 // TODO_FILL: replace with your real verifiable status. If a row is aspirational, mark it that way.
 const CURRENT_STATE = [
   ["iOS BUILD", "v0.6 · feature-complete for charter test"],
-  ["TESTFLIGHT", "Internal · public release Q3 2026"],
+  ["TESTFLIGHT", "Public · available now"],
   ["USERS", "Pre-launch — charter program applications opening"],
   ["GMV", "Pre-launch — first jobs scheduled after charter program kickoff"],
   ["LAANC USS", "Designation in progress · application in preparation"],
