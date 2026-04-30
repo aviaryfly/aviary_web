@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { A, btnPrimary, btnGhost } from "./shared.jsx";
 import AirspaceMap from "./AirspaceMap.jsx";
 import PhoneFrame from "./PhoneFrame.jsx";
+import EarlyAccessModal from "./EarlyAccessModal.jsx";
 import { useIsNarrow, useIsTablet } from "../hooks/useMediaQuery.js";
 
 // Word-level fade for "The workforce / for the sky." with magenta italic on "sky".
@@ -48,6 +49,7 @@ export default function Hero({ layout = "split" }) {
   const narrow = useIsNarrow();
   const compact = useIsTablet();
   const [entered, setEntered] = useState(false);
+  const [modalRole, setModalRole] = useState(null);
 
   useEffect(() => {
     const t = requestAnimationFrame(() => setEntered(true));
@@ -72,10 +74,11 @@ export default function Hero({ layout = "split" }) {
             Aviary connects businesses with FAA-certified Part 107 pilots and gives each job a dispatch workflow that starts with airspace, equipment, availability, and delivery requirements.
           </p>
           <div className="hero-step" style={{ "--d": "920ms", display: "flex", gap: 12, justifyContent: "flex-end" }}>
-            <button className="sans" style={btnPrimary}>Post a job →</button>
-            <button className="sans" style={btnGhost}>Join as a pilot</button>
+            <button type="button" className="sans" style={btnPrimary} onClick={() => setModalRole("CUSTOMER")}>Need a pilot →</button>
+            <button type="button" className="sans" style={btnGhost} onClick={() => setModalRole("PILOT")}>Join as a pilot</button>
           </div>
         </div>
+        <EarlyAccessModal role={modalRole} onClose={() => setModalRole(null)} />
       </section>
     );
   }
@@ -122,8 +125,8 @@ export default function Hero({ layout = "split" }) {
         </p>
 
         <div className="hero-step" style={{ "--d": "980ms", display: "flex", gap: 10, marginBottom: 48, flexWrap: "wrap" }}>
-          <a href="#contact" className="sans" style={{ ...btnPrimary, display: "inline-block" }}>Post a job →</a>
-          <a href="#contact" className="sans" style={{ ...btnGhost, display: "inline-block" }}>Join as a pilot</a>
+          <button type="button" className="sans" style={{ ...btnPrimary, display: "inline-block" }} onClick={() => setModalRole("CUSTOMER")}>Need a pilot →</button>
+          <button type="button" className="sans" style={{ ...btnGhost, display: "inline-block" }} onClick={() => setModalRole("PILOT")}>Join as a pilot</button>
         </div>
 
         <div
@@ -251,6 +254,7 @@ export default function Hero({ layout = "split" }) {
           </div>
         )}
       </div>
+      <EarlyAccessModal role={modalRole} onClose={() => setModalRole(null)} />
     </section>
   );
 }

@@ -25,7 +25,7 @@ export default function Founders() {
               insight → personal commitment (Part 107, PPL, FAA filing). 4 sentences max.
               The placeholder below is a scaffold, not a script. Make it specific to you. */}
           <p className="serif" style={{ fontSize: 17, color: A.ink2, lineHeight: 1.6, margin: "0 0 24px", maxWidth: 620, fontStyle: "italic" }}>
-            I spent years at Cornell building autonomous flapping-wing aircraft. The deeper I went into autonomy, the clearer it became that the bottleneck for commercial drones isn't the aircraft — it's who is licensed to fly them, where, and under whose airspace authorization. I got my Part 107, started my PPL, and engaged with the FAA on Part 108 because I want to build the rails, not another camera-drone app. Aviary is the company I needed to exist when I started flying.
+            I spent 3.5 years at Cornell building autonomous flapping-wing aircraft. The deeper I went into autonomy, the clearer it became that the bottleneck for commercialization isn't the aircraft, but it's who is licensed to fly them, where, and under whose airspace authorization. I started my Private Pilot License (PPL), and actively engaged with the avation community and the FAA on Part 107 & 108 because I want to build the worforce platform that the world needs, not another drone. Aviary is the company I needed to exist when I started flying.
           </p>
 
           <Stagger step={70} threshold={0.3} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
